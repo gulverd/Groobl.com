@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="45ff049fee6a45798051474fe20ad1e5" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="groubel_dbModel.ChatComment" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.ChatInterest" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.ChatMember" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.Chat" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.CommentFavorite" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.CommentLike" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.Interest" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.Friendship" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.UserImage" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.UserInterest" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.User" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.PostComment" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.PostInterest" Width="1.5" PointX="5.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.Post" Width="1.5" PointX="3" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="groubel_dbModel.Rate" Width="1.5" PointX="7.5" PointY="17.5" IsExpanded="true" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatComments_Chats" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatComments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_CommentFavorites_ChatComments" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_CommentLike_ChatComments" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatInterests_Chats" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatInterests_Interests" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatMembers_Chats" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatMembers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatMembers_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_CommentFavorites_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_CommentLike_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_PostInterests_Interests" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_Friendship_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_Friendship_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_UserImages_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_UserInterests_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_PostComments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_Posts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_Rates_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_PostComments_Posts" ManuallyRouted="false" />
+        <AssociationConnector Association="groubel_dbModel.FK_PostInterests_Posts" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="groubel_dbModel.PostHide" Width="1.5" PointX="12.375" PointY="22.375" />
+        <AssociationConnector Association="groubel_dbModel.FK_PostHide_Users" />
+        <AssociationConnector Association="groubel_dbModel.FK_PostHide_Posts" />
+        <EntityTypeShape EntityType="groubel_dbModel.PostSave" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="groubel_dbModel.FK_ChatMembers_Users2" />
+        <EntityTypeShape EntityType="groubel_dbModel.Notification" Width="1.5" PointX="3" PointY="7.625" />
+        <AssociationConnector Association="groubel_dbModel.FK_Notification_Users" />
+        <AssociationConnector Association="groubel_dbModel.FK_Notification_Users1" />
+        <EntityTypeShape EntityType="groubel_dbModel.Reporting" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

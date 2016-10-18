@@ -1,0 +1,11 @@
+﻿
+<div class="col-lg-12" style="padding:20px 0">
+
+    <im ng-repeat="(key, value) in op.files">
+        <a href="{{op.getlogo(im)}}" ng-repeat="im in value" class="col-lg-3">
+            <img ng-src="{{op.getlogo(im)}}" style="width:95%">
+        </a>
+   </im>
+
+   <div class="clearer"></div>
+</div>

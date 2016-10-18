@@ -1,0 +1,334 @@
+﻿<div class="profile_content" ng-controller="postsController as post">
+
+    <div class="col-xs-12 activities_rooms_nav" style="background:#fff">
+        <ul>
+            <li><a ui-sref="Profile.Posts.All({id:pr.userModel.Id})" ui-sref-active="active">all</a></li>
+            <li><a ui-sref="Profile.Posts.Anonimus({id:pr.userModel.Id})" ui-sref-active="active">anonymus</a></li>
+            <li><a ui-sref="Profile.Posts.Saved({id:pr.userModel.Id})" ui-sref-active="active">saved</li>
+        </ul>
+    </div>
+
+    <div id="post_list"  >
+
+        <div class="post_group"  ng-repeat="gr in post.Posts">
+
+            <div class="col-xs-12 boxes_wrapper" id="boxes_wrapper" ng-repeat="pt in gr.Posts" ng-if="pt.Delete!=true" ng-class="{anonymous:pt.Anonoimus }">
+                <div class="col-xs-12 post_top_wrapper" id="post_top_wrapper">
+                    <div class="col-xs-7" id="post_top_left" ng-if="!pt.Anonoimus">
+                        <img ng-src="{{post.getlogo(pt.User.Image)}}" ng-if="pt.User.Image.length>0" id="post_image">
+                        <a ui-sref="Profile.Posts.All({id:pt.User.Id})" user data-id="{{pt.User.Id}}" ng-class="{middle:pt.OldUser==null}">{{pt.User.FirstName}} {{pt.User.LastName}}</a>
+                        <a ui-sref="Profile.Posts.All({id:pt.OldUser.Id})" user data-id="{{pt.OldUser.Id}}" class="sr_user" ng-if="pt.OldUser!=null" title="post owner"><i></i>{{pt.OldUser.FirstName}} {{pt.OldUser.LastName}}</a>
+                    </div>
+                    <div class="col-xs-7" id="post_top_left" ng-if="pt.Anonoimus">
+                        <img ng-src="{{post.getlogo(pt.User.Image)}}" ng-if="pt.User.Image.length>0" id="post_image">
+                        <a>Anonimus User</a>
+                    </div>
+                    <div class="col-xs-5" id="post_top_right">
+                        <div class="" id="post_buttons_wrp" ng-class="{active:pt.Saved}" title="save post">
+                            <a ng-click="post.savePost(pt)"><i class="fa fa-file" aria-hidden="true" id="save_post_icon"></i></a>
+                            <div class="bubble" id="save_bubble" ng-if="pt.Saved">post saved</div>
+                            <div class="bubble" id="save_bubble" ng-if="!pt.Saved">save post</div>
+                        </div>
+                        <div class="" id="post_buttons_wrp" title="share post">
+                            <a ng-click="post.sharePost(pt)"><i class="fa fa-share" aria-hidden="true" id="share_post_icon"></i></a>
+                            <div class="bubble" id="share_bubble">share post</div>
+                        </div>
+                        <div class="" id="post_buttons_wrp">
+                            {{pt.DateString}}
+                        </div>
+                        <div class="post_buttons_wrp" id="post_buttons_wrp" ng-init="pt.Drop=false" ng-click="post.postMenu(pt)">
+                            <i class="fa fa-caret-down" id="post_caret" data-toggle="dropdown"></i>
+                        </div>
+                        <div class="dropdown_post_caret_wrp drop_down_menu drop_down_menu_{{pt.Id}}" id="dropdown_post_caret_div">
+                            <div class="col-xs-12" id="dropdown_post_caret_buttons_wrapper">
+                                <a ui-sref="Post({id:pt.Id})"><i class="fa fa-info-circle" aria-hidden="true" id="post_caret_icon"></i> view post</a>
+                            </div>
+                            <div class="col-xs-12" id="dropdown_post_caret_buttons_wrapper" ng-click="post.reportPost(pt)" ng-if="!pt.Reported">
+                                <a><i class="fa fa-info-circle" aria-hidden="true" id="post_caret_icon"></i> Report</a>
+                            </div>
+                            <div class="col-xs-12" id="dropdown_post_caret_buttons_wrapper" ng-if="pt.Reported">
+                                <a><i class="fa fa-info-circle" aria-hidden="true" id="post_caret_icon"></i> Reported</a>
+                            </div>
+                            <div class="col-xs-12" id="dropdown_post_caret_buttons_wrapper" ng-click="post.hidePost(pt)">
+                                <a><i class="fa fa-eye-slash" aria-hidden="true" id="post_caret_icon"></i> Hide</a>
+                            </div>
+                            <div class="col-xs-12" id="dropdown_post_caret_buttons_wrapper" ng-click="post.deletePost(pt)" ng-if="post.userId==pt.UserId">
+                                <a><i class="fa fa-remove" aria-hidden="true" id="post_caret_icon"></i> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12" id="post_content" ng-bind-html="post.getText(pt.Text)"></div>
+                <div class="col-xs-12" id="post_interests">
+
+
+                    <div class="interest_tabs {{int.IsMain}}" ng-repeat="int in pt.PostInterests"
+                         ng-class="{interest_tabs:int.IsMain,interest_tabs_not_liked:!int.IsMain, interest_tabs_not_liked2: post.Interest.Id==int.Id}" ng-click="user.openInterest(int.Id)">#{{int.Name}}</div>
+
+                </div>
+                <div class="col-xs-12">
+                    <img ng-src="{{post.getlogo(pt.ImageString)}}" style="width:100%;margin-bottom:10px" ng-if="pt.ImageString.length>0" ng-click="post.openImage(pt)" />
+                    <div ng-if="pt.AttachementString.length>0" class="attachement_list">
+                        <a href="{{post.getlogo(pt.AttachementString)}}" target="_blank">{{post.getAttachementName(pt.AttachementString)}}</a>
+                    </div>
+                </div>
+                <div class="col-xs-12" id="post_down_wrapper">
+                    <div class="col-xs-12" id="post_emotions_wrapper">
+                        <div class="" id="emotions" ng-click="post.rate(1,pt)" ng-class="{active:pt.Rate.Item2==1}">
+                            <div class="col-xs-12" id="emotion_wrapper">
+                                <img src="Content/Images/em_1.png" id="emotion_icon">
+                            </div>
+                            <div class="col-xs-12">{{post.getRate(pt.Rate.Item1,1)}}</div>
+                        </div>
+                        <div class="" id="emotions" ng-click="post.rate(2,pt)" ng-class="{active:pt.Rate.Item2==2}">
+                            <div class="col-xs-12" id="emotion_wrapper">
+                                <img src="Content/Images/em_2.png" id="emotion_icon">
+                            </div>
+                            <div class="col-xs-12">{{post.getRate(pt.Rate.Item1,2)}}</div>
+                        </div>
+                        <div class="" id="emotions" ng-click="post.rate(3,pt)" ng-class="{active:pt.Rate.Item2==3}">
+                            <div class="col-xs-12" id="emotion_wrapper">
+                                <img src="Content/Images/em_3.png" id="emotion_icon">
+                            </div>
+                            <div class="col-xs-12">{{post.getRate(pt.Rate.Item1,3)}}</div>
+                        </div>
+                        <div class="" id="emotions" ng-click="post.rate(4,pt)" ng-class="{active:pt.Rate.Item2==4}">
+                            <div class="col-xs-12" id="emotion_wrapper">
+                                <img src="Content/Images/em_4.png" id="emotion_icon">
+                            </div>
+                            <div class="col-xs-12">{{post.getRate(pt.Rate.Item1,4)}}</div>
+                        </div>
+                        <div class="" id="emotions" ng-click="post.rate(5,pt)" ng-class="{active:pt.Rate.Item2==5}">
+                            <div class="col-xs-12" id="emotion_wrapper">
+                                <img src="Content/Images/em_5.png" id="emotion_icon">
+                            </div>
+                            <div class="col-xs-12">{{post.getRate(pt.Rate.Item1,5)}}</div>
+                        </div>
+                        <div class="" id="emotions" ng-click="post.rate(6,pt)" ng-class="{active:pt.Rate.Item2==6}">
+                            <div class="col-xs-12" id="emotion_wrapper">
+                                <img src="Content/Images/em_6.png" id="emotion_icon">
+                            </div>
+                            <div class="col-xs-12">{{post.getRate(pt.Rate.Item1,6)}}</div>
+                        </div>
+                        <div class="" id="emotions_likers_wrapper" ng-click="post.seeEmotions(pt)">
+                            <zaz id="emmotion_authors_btn">
+                                <span ng-repeat="nm in pt.PostLikers.Item2">{{nm}} <span ng-if="$index==0">,</span> </span>
+                                <span ng-if="pt.PostLikers.Item2.length>0">and</span> {{pt.PostLikers.Item1-pt.PostLikers.Item2.length}} <span ng-if="pt.PostLikers.Item2.length>0">other</span> people wrote "emotion"
+                            </zaz>
+                        </div>
+                        <div class="emmotions_authors_hide emmotion_authors_wrp_{{pt.Id}}" id="emmotion_authors_wrp">
+
+                            <div class="col-xs-12" id="emmotion_lists_header">
+                                <div class="" id="emmotions_counts_wrapper">
+                                    <div class="" id="emmotions_count_all" ng-click="post.filterRates=0" ng-class="{active:post.filterRates==0}">
+                                        <a>All {{pt.PostLikers.Item1}}</a>
+                                    </div>
+                                    <div class="" id="emmotions_count_ico_wrp" ng-click="post.filterRates=1" ng-class="{active:post.filterRates==1}">
+                                        <a>
+                                            <img src="Content/Images/em_1.png" id="emmotion_icon_in_header">
+                                            <span>{{post.getRate(pt.Rate.Item1,1)}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="" id="emmotions_count_ico_wrp" ng-click="post.filterRates=2" ng-class="{active:post.filterRates==2}">
+                                        <a>
+                                            <img src="Content/Images/em_2.png" id="emmotion_icon_in_header">
+                                            <span>{{post.getRate(pt.Rate.Item1,2)}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="" id="emmotions_count_ico_wrp" ng-click="post.filterRates=3" ng-class="{active:post.filterRates==3}">
+                                        <a>
+                                            <img src="Content/Images/em_3.png" id="emmotion_icon_in_header">
+                                            <span>{{post.getRate(pt.Rate.Item1,3)}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="" id="emmotions_count_ico_wrp" ng-click="post.filterRates=4" ng-class="{active:post.filterRates==4}">
+                                        <a>
+                                            <img src="Content/Images/em_4.png" id="emmotion_icon_in_header">
+                                            <span>{{post.getRate(pt.Rate.Item1,4)}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="" id="emmotions_count_ico_wrp" ng-click="post.filterRates=5" ng-class="{active:post.filterRates==5}">
+                                        <a>
+                                            <img src="Content/Images/em_5.png" id="emmotion_icon_in_header">
+                                            <span>{{post.getRate(pt.Rate.Item1,5)}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="" id="emmotions_count_ico_wrp" ng-click="post.filterRates=6" ng-class="{active:post.filterRates==6}">
+                                        <a>
+                                            <img src="Content/Images/em_6.png" id="emmotion_icon_in_header">
+                                            <span>{{post.getRate(pt.Rate.Item1,6)}}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="" id="close_emmotion_authors_wrp">
+                                    <i class="fa fa-remove" id="close_emmotion_authors" ng-click="post.closeEemotions(pt.Id)"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 emotion_scroll" style="height:150px;">
+                                <div class="col-xs-12" id="emmotion_lists" ng-repeat="em in pt.Emotions" ng-if="em.RateType==post.filterRates || post.filterRates==0">
+                                    <div class="col-xs-2" id="exp_icon_wrp">
+                                        <img src="Content/Images/em_{{em.RateType}}.png" id="emmotion_icon_in_list">
+                                    </div>
+                                    <div class="col-xs-6" id="exp_name_wrp">
+                                        <a href="#/Profile/Posts/All/{{em.Id}}">{{em.FirstName}} {{em.LastName}}</a>
+                                    </div>
+                                    <!--<div class="col-xs-4" id="exp_friends_wrp">
+                                <a href="#">
+                                    <button type="button" class="btn btn-info" id="exp_friends_wrp_friend_btn">Friends <i class="fa fa-users" aria-hidden="true"></i></button>
+                                </a>
+                            </div>-->
+                                </div>
+                                <div class="col-xs-12" ng-click="post.seeMoreEmotions(pt)" ng-if="pt.Emotions.length>39">more</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12" id="add_comment_wrapper" ng-class="{anonimus_post:pt.Anonoimus }">
+                        <div class="col-xs-12" id="new_comment_wrapper">
+                            <textarea style="background:none;border:none;width:95%" id="add_new_comment_div" onkeyup="textAreaAdjust(this)" placeholder="add comment" ng-init="pt.Comment" ng-model="pt.Comment" ng-enter="post.addComment(pt)"></textarea>
+
+                            <input type="file" id="cooment_attachement_{{pt.Id}}" style="display:none" />
+
+                            <div class="" id="comment_attachment" ng-click="post.openCommentUpload(pt.Id)">
+                                <i class="fa fa-paperclip" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12" id="post_comments_wrapper" ng-class="{anonimus_post:pt.Anonoimus }" ng-if="pt.PostComments.length>0">
+
+                        <div class="col-xs-12" id="comment_list" ng-repeat="comm in pt.PostComments">
+                            <div class="" id="comment_author_pic_wrapper">
+                                <a ui-sref="Profile.Posts.All({id:comm.User.Id})" user data-id="{{comm.User.Id}}" ng-if="!pt.Anonoimus">
+                                    <img style="width:30px" ng-src="{{post.getlogo(comm.User.Image)}}" />
+                                </a>
+                            </div>
+                            <div class="" id="comment_right_side">
+                                <div class="col-xs-12" id="comment_author_wrapper">
+                                    <a ui-sref="Profile.Posts.All({id:comm.User.Id})" user data-id="{{comm.User.Id}}" ng-if="!pt.Anonoimus">{{comm.User.FirstName}} {{comm.User.LastName}}</a> - <span id="comm_date">{{comm.DateString}}</span>
+                                    <span id="comm_remove" ng-click="post.deleteComment(pt.PostComments,$index,comm.Id)"><a><i class="fa fa-times" aria-hidden="true"></i></a></span>
+                                </div>
+                                <div class="col-xs-12" id="comment" ng-bind-html="post.getText(comm.Text)"></div>
+                                <div class="col-xs-12" id="comment" ng-if="comm.Attachement.length>0">
+                                    <img ng-src="{{post.getlogo(comm.ImageString)}}" style="width:50px;" ng-if="comm.ImageString.length>0" ng-click="post.openComment(comm)" />
+
+                                    <a href="{{post.getlogo(comm.AttachementString)}}" ng-if="comm.AttachementString.length>0" target="_blank">{{post.getAttachementName(comm.AttachementString)}} <i class="fa fa-chevron-down"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="old_comments" ng-click="post.moreComments(pt)" ng-if="pt.CommentsCount>3 && pt.CommentsCount!=pt.PostComments.length">show old comment</div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="overlay" ng-if="post.selectedPost!=null" ng-click="post.closePopup()" style="width:100%;height:100%;position:fixed;top:0;left:0;z-index:100">
+
+        <div style="width:60%;margin:50px auto;" id="boxes_wrapper" class="opened_post" ng-class="{anonimus_post:post.selectedPost.Anonoimus }" s>
+            <div class="col-xs-12" id="post_top_wrapper">
+                <div class="col-xs-8" id="post_top_left" ng-if="!post.selectedPost.Anonoimus">
+                    <img ng-src="{{post.getlogo(post.selectedPost.User.Image)}}" ng-if="post.selectedPost.User.Image.length>0" id="post_image">
+                    <a ui-sref="Profile.Posts.All({id:post.selectedPost.User.Id})" user data-id="{{post.selectedPost.User.Id}}" ng-class="{middle:post.selectedPost.OldUser==null}">{{post.selectedPost.User.FirstName}} {{post.selectedPost.User.LastName}}</a>
+                    <a ui-sref="Profile.Posts.All({id:post.selectedPost.OldUser.Id})" user data-id="{{post.selectedPost.OldUser.Id}}" class="sr_user" ng-if="post.selectedPost.OldUser!=null" title="post owner"><i></i>{{post.selectedPost.OldUser.FirstName}} {{post.selectedPost.OldUser.LastName}}</a>
+                </div>
+                <div class="col-xs-2" id="post_top_right"></div>
+                <div class="col-xs-2" id="post_top_right">
+                    <div class="" id="post_buttons_wrp" ng-class="{active:post.selectedPost.Saved}" ng-if="!post.selectedPost.Anonoimus" title="save post">
+                        <a ng-click="post.savePost(post.selectedPost)"><i class="fa fa-file" aria-hidden="true" id="save_post_icon"></i></a>
+                        <div class="bubble" id="save_bubble" ng-if="post.selectedPost.Saved">post saved</div>
+                        <div class="bubble" id="save_bubble" ng-if="!post.selectedPost.Saved">save post</div>
+                    </div>
+                    <div class="" id="post_buttons_wrp" ng-if="!post.selectedPost.Anonoimus" title="share post">
+                        <a ng-click="post.sharePost(post.selectedPost)"><i class="fa fa-share" aria-hidden="true" id="share_post_icon"></i></a>
+                        <div class="bubble" id="share_bubble">share post</div>
+                    </div>
+                    <div class="" id="post_buttons_wrp">
+                        {{post.selectedPost.DateString}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" id="post_content" ng-bind-html="post.getText(post.selectedPost.Text)"></div>
+            <div class="col-xs-12" id="post_interests">
+
+
+                <div class="interest_tabs {{int.IsMain}}" ng-repeat="int in post.selectedPost.PostInterests"
+                     ng-class="{interest_tabs:int.IsMain,interest_tabs_not_liked:!int.IsMain, interest_tabs_not_liked2: post.Interest.Id==int.Id}" ng-click="user.openInterest(int.Id)">#{{int.Name}}</div>
+
+            </div>
+            <div class="col-xs-12">
+                <img ng-src="{{post.getlogo(post.selectedPost.ImageString)}}" style="width:100%;margin-bottom:10px" ng-if="post.selectedPost.ImageString.length>0" ng-click="post.openImage(post.selectedPost)" />
+                <div ng-if="post.selectedPost.AttachementString.length>0" class="attachement_list">
+                    <a href="{{post.getlogo(post.selectedPost.AttachementString)}}" target="_blank">{{post.getAttachementName(post.selectedPost.AttachementString)}}</a>
+                </div>
+            </div>
+            <div class="col-xs-12" id="post_down_wrapper">
+                <div class="col-xs-12" id="post_emotions_wrapper">
+                    <div class="" id="emotions" ng-click="post.rate(1,post.selectedPost)" ng-class="{active:post.selectedPost.Rate.Item2==1}">
+                        <div class="col-xs-12" id="emotion_wrapper">
+                            <img src="Content/Images/em_1.png" id="emotion_icon">
+                        </div>
+                        <div class="col-xs-12">{{post.getRate(post.selectedPost.Rate.Item1,1)}}</div>
+                    </div>
+                    <div class="" id="emotions" ng-click="post.rate(2,post.selectedPost)" ng-class="{active:post.selectedPost.Rate.Item2==2}">
+                        <div class="col-xs-12" id="emotion_wrapper">
+                            <img src="Content/Images/em_2.png" id="emotion_icon">
+                        </div>
+                        <div class="col-xs-12">{{post.getRate(post.selectedPost.Rate.Item1,2)}}</div>
+                    </div>
+                    <div class="" id="emotions" ng-click="post.rate(3,post.selectedPost)" ng-class="{active:post.selectedPost.Rate.Item2==3}">
+                        <div class="col-xs-12" id="emotion_wrapper">
+                            <img src="Content/Images/em_3.png" id="emotion_icon">
+                        </div>
+                        <div class="col-xs-12">{{post.getRate(post.selectedPost.Rate.Item1,3)}}</div>
+                    </div>
+                    <div class="" id="emotions" ng-click="post.rate(4,post.selectedPost)" ng-class="{active:post.selectedPost.Rate.Item2==4}">
+                        <div class="col-xs-12" id="emotion_wrapper">
+                            <img src="Content/Images/em_4.png" id="emotion_icon">
+                        </div>
+                        <div class="col-xs-12">{{post.getRate(post.selectedPost.Rate.Item1,4)}}</div>
+                    </div>
+                    <div class="" id="emotions" ng-click="post.rate(5,post.selectedPost)" ng-class="{active:post.selectedPost.Rate.Item2==5}">
+                        <div class="col-xs-12" id="emotion_wrapper">
+                            <img src="Content/Images/em_5.png" id="emotion_icon">
+                        </div>
+                        <div class="col-xs-12">{{post.getRate(post.selectedPost.Rate.Item1,5)}}</div>
+                    </div>
+                    <div class="" id="emotions" ng-click="post.rate(6,post.selectedPost)" ng-class="{active:post.selectedPost.Rate.Item2==6}">
+                        <div class="col-xs-12" id="emotion_wrapper">
+                            <img src="Content/Images/em_6.png" id="emotion_icon">
+                        </div>
+                        <div class="col-xs-12">{{post.getRate(post.selectedPost.Rate.Item1,6)}}</div>
+                    </div>
+                    <div class="" id="emotions_likers_wrapper">
+                        <a id="emmotion_authors_btn" ui-sref="Post({id:post.selectedPost.Id})">
+                            See Comments({{post.selectedPost.CommentsCount}})
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div style="clear:both"></div>
+        </div>
+
+    </div>
+
+    <div class="overlay" ng-if="post.selectedComment!=null" ng-click="post.closeComment()" style="width:100%;height:100%;position:absolute;top:0;left:0">
+        <div style="width:70%;margin:50px auto;background:#fff;padding:5px">
+            <img ng-src="{{post.getlogo(post.selectedComment.ImageString)}}" style="width:100%" ng-if="post.selectedComment.ImageString.length>0" />
+        </div>
+    </div>
+</div>
+
+

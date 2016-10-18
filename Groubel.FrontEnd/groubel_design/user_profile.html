@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
+    <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+<header id="main_header">
+    <div class="w1024 header_container border_box">
+        <div class="header_menu">what's new</div>
+        <div class="header_menu ">friends</div>
+        <div id="header_tools">
+            <div id="search_group">
+                <input type="text" placeholder="search" class="border_box">
+                <div id="search_btn"></div>
+            </div>
+            <div id="notification" class="border_box">
+                <div id="not_main">
+                      <div id="not_icon">
+                          <div>2</div>
+                      </div>
+                      <div id="last_not">basdasd <a href="">sdfdsf</a> sdf sdf sdf sdf df</div>
+                </div>
+                <div id="not_list" class="border_box" style="display: none">
+                    <div>
+                        <div class="border_box not_item"> <div class="us_img border_box"></div>basdasd sdfdsf sdf sdf sdf sdf df</div>
+                        <div class="border_box not_item"> <div class="us_img border_box"></div>basdasd sdfdsf sdf sdf sdf sdf df</div>
+                        <div class="border_box not_item"> <div class="us_img border_box"></div>basdasd sdfdsf sdf sdf sdf sdf df</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="main_container w1024">
+
+    <dvi class="left_Side">
+
+        <div id="user_page">
+            <div id="user_per_image">
+                <img src="http://placehold.it/500x500">
+            </div>
+            <div id="user_name_pers">asdasd asdasda</div>
+            <div class="user_info_item">24 years old</div>
+            <div class="user_info_item">male</div>
+            <div class="user_info_item">active 2 minutes ago</div>
+            <div id="interest_list_main" class="prof_inert">
+                <div id="interested_text">
+                    <div>I am interested</div>
+                    <div class="ck_slc"></div>
+                    <div class="clearer"></div>
+                </div>
+                <div id="main_interest_list">
+
+                    <div class="interest red">#interet</div>
+                    <div class="interest red">#interet</div>
+                    <div class="interest blue">#interet</div>
+                    <div class="interest blue">#interet</div>
+
+                    <div class="clearer"></div>
+                </div>
+
+                <div id="interests_more"></div>
+            </div>
+
+            <div class="room_menu profile_menu">
+                <div class="room_menu_items">room</div>
+                <div class="room_menu_items">people</div>
+                <div class="room_menu_items">photos</div>
+                <div class="room_menu_items">files</div>
+                <div class="room_menu_items">settings</div>
+            </div>
+        </div>
+
+
+        <div class="profile_content" style="display: none">
+            <div class="profile_second_menu">
+                <div>all</div>
+                <div>posts</div>
+                <div>comment</div>
+                <div>room</div>
+            </div>
+
+            <div class="profile_content_div">
+
+                <a href="" class="user_image_item">
+                    <img src="http://placehold.it/500x500">
+                </a>
+                <a href="" class="user_image_item">
+                    <img src="http://placehold.it/500x500">
+                </a>
+                <a href="" class="user_image_item">
+                    <img src="http://placehold.it/500x500">
+                </a>
+                <a href="" class="user_image_item">
+                    <img src="http://placehold.it/500x500">
+                </a>
+                <a href="" class="user_image_item">
+                    <img src="http://placehold.it/500x500">
+                </a>
+
+                <a href="" class="user_image_item">
+                    <img src="http://placehold.it/500x500">
+                </a>
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+
+        <div class="profile_content" style="display: none">
+
+            <div class="activity short border_box">today</div>
+            <div class="activity border_box">today joined <a href="">sdfsdf s</a> room </div>
+            <div class="activity border_box">today commented on <a href="">sdfsdf s</a> photo </div>
+
+        </div>
+
+        <div class="profile_content" style="display: none">
+
+            <div class="profile_second_menu">
+                <div>all</div>
+                <div>tornike's rooms</div>
+                <div>mutual</div>
+            </div>
+
+            <div class="profile_content_div">
+
+                <div class="room_tumb_item">
+                    <div class="room_bg">
+                        <img src="http://placehold.it/500x500">
+                    </div>
+                    <a href="" class="room_tumb_name">asd asd ads d</a>
+                    <div class="room_thmb_icon"></div>
+                    <div class="room_thmb_text border_box">dasd asdasdasd assdf  sdf sdf sdf sdf sd da and 25 others are in this room</div>
+                </div>
+
+                <div class="room_tumb_item">
+                    <div class="room_bg">
+                        <img src="http://placehold.it/500x500">
+                    </div>
+                    <a href="" class="room_tumb_name">asd asd ads d</a>
+                    <div class="room_thmb_icon"></div>
+                    <div class="room_thmb_text border_box">dasd asdasdasd assdf  sdf sdf sdf sdf sd da and 25 others are in this room</div>
+                </div>
+
+                <div class="room_tumb_item">
+                    <div class="room_bg">
+                        <img src="http://placehold.it/500x500">
+                    </div>
+                    <a href="" class="room_tumb_name">asd asd ads d</a>
+                    <div class="room_thmb_icon"></div>
+                    <div class="room_thmb_text border_box">dasd asdasdasd assdf  sdf sdf sdf sdf sd da and 25 others are in this room</div>
+                </div>
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+
+        <div class="profile_content">
+
+            <div class="profile_second_menu">
+                <div>all</div>
+                <div>anonymus</div>
+                <div>saved</div>
+            </div>
+
+
+            <div id="post_list">
+
+<div id="timeline"></div>
+
+                <div class="post_group">
+                    <div class="post_date_gr">1</div>
+                    <div class="post border_box">
+                        <div class="post_up">
+                            <div class="left">
+
+                                <div class="user_img">
+
+                                </div>
+                                <div class="user_manes">
+                                    <a href="">jhon smith</a>
+                                    <a href="" class="sr_user"><i></i>jhon smith</a>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="drop">
+                                    <div class="drop_down_menu border_box">
+                                        <div>report</div>
+                                        <div>hide</div>
+                                        <div>delete</div>
+                                    </div>
+                                </div>
+                                <div class="post_date">123/23/43 42</div>
+                                <div class="share"></div>
+                                <div class="save title"><div class="bubble">saved</div></div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                        <div class="post_test">sdfs d fsdf sd fsd sdfs d fsdf sd fsd sdfs d fsdf sd fsd sdfs d fsdf sd fsd sdfs d fsdf sd fsd </div>
+                        <div class="post_interests">
+
+                            <div class="interest gray">#interet</div>
+                            <div class="interest red">#interet</div>
+                            <div class="interest blue">#interet</div>
+                            <div class="interest blue">#interet</div>
+
+                            <div class="clearer"></div>
+                        </div>
+                        <img src="http://placehold.it/500x500" class="post_image"/>
+
+                        <div class="emotions">
+                            <div class="emot_1"><i></i>23</div>
+                            <div class="emot_2"><i></i>23</div>
+                            <div class="emot_3"><i></i>23</div>
+                            <div class="emot_4"><i></i>23</div>
+                            <div class="emot_5"><i></i>23</div>
+                            <div class="emot_6"><i></i>23</div>
+                            <div class="clearer"></div>
+                        </div>
+                    </div>
+                    <div class="post_comment">
+                        <div class="add_coment border_box">
+                            <textarea class="comment_textarea" onkeyup="textAreaAdjust(this)" placeholder="add comment"></textarea>
+                            <div class="comment_attachement"></div>
+                        </div>
+                        <div class="comments border_box">
+                            <div class="comment">
+                                <div class="comm_user">
+                                    <div class="com_user_img"></div>
+                                    <a href="">dsdsds sddsd</a>
+                                </div>
+                                <div class="clearer"></div>
+                                <div class="comment_text">sfd fsdf sdf sfds f sfdsd fs d fsd fsdf sdf sdf sdfsdf sdf sdf s dfsd fsdf</div>
+                                <div class="comment_attachements border_box">
+                                    <img src="http://placehold.it/50x50">
+                                    <img src="http://placehold.it/50x50">
+                                    <a href="">sfdsdfs.zip <i class="fa fa-chevron-down"></i></a>
+                                    <div class="clearer"></div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comm_user">
+                                    <div class="com_user_img"></div>
+                                    <a href="">dsdsds sddsd</a>
+                                </div>
+                                <div class="clearer"></div>
+                                <div class="comment_text">sfd fsdf sdf sfds f sfdsd fs d fsd fsdf sdf sdf sdfsdf sdf sdf s dfsd fsdf</div>
+                                <div class="comment_attachements">
+                                    <img src="http://placehold.it/50x50">
+                                    <img src="http://placehold.it/50x50">
+                                    <a href="">sfdsdfs.zip <i class="fa fa-chevron-down"></i></a>
+                                    <div class="clearer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post_group">
+                    <div class="post_date_gr">2</div>
+                    <div class="post border_box">
+                        <div class="post_up">
+                            <div class="left">
+
+                                <div class="user_img">
+
+                                </div>
+                                <div class="user_manes">
+                                    <a href="">jhon smith</a>
+                                    <a href="" class="sr_user"><i></i>jhon smith</a>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="drop">
+                                    <div class="drop_down_menu border_box">
+                                        <div>report</div>
+                                        <div>hide</div>
+                                        <div>delete</div>
+                                    </div>
+                                </div>
+                                <div class="post_date">123/23/43 42</div>
+                                <div class="share"></div>
+                                <div class="save title"><div class="bubble">saved</div></div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                        <div class="post_test">sdfs d fsdf sd fsd sdfs d fsdf sd fsd sdfs d fsdf sd fsd sdfs d fsdf sd fsd sdfs d fsdf sd fsd </div>
+                        <div class="post_interests">
+
+                            <div class="interest gray">#interet</div>
+                            <div class="interest red">#interet</div>
+                            <div class="interest blue">#interet</div>
+                            <div class="interest blue">#interet</div>
+
+                            <div class="clearer"></div>
+                        </div>
+                        <img src="http://placehold.it/500x500" class="post_image"/>
+
+                        <div class="emotions">
+                            <div class="emot_1"><i></i>23</div>
+                            <div class="emot_2"><i></i>23</div>
+                            <div class="emot_3"><i></i>23</div>
+                            <div class="emot_4"><i></i>23</div>
+                            <div class="emot_5"><i></i>23</div>
+                            <div class="emot_6"><i></i>23</div>
+                            <div class="clearer"></div>
+                        </div>
+                    </div>
+                    <div class="post_comment">
+                        <div class="add_coment border_box">
+                            <textarea class="comment_textarea" onkeyup="textAreaAdjust(this)" placeholder="add comment"></textarea>
+                            <div class="comment_attachement"></div>
+                        </div>
+                        <div class="comments border_box">
+                            <div class="comment">
+                                <div class="comm_user">
+                                    <div class="com_user_img"></div>
+                                    <a href="">dsdsds sddsd</a>
+                                </div>
+                                <div class="clearer"></div>
+                                <div class="comment_text">sfd fsdf sdf sfds f sfdsd fs d fsd fsdf sdf sdf sdfsdf sdf sdf s dfsd fsdf</div>
+                                <div class="comment_attachements border_box">
+                                    <img src="http://placehold.it/50x50">
+                                    <img src="http://placehold.it/50x50">
+                                    <a href="">sfdsdfs.zip <i class="fa fa-chevron-down"></i></a>
+                                    <div class="clearer"></div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comm_user">
+                                    <div class="com_user_img"></div>
+                                    <a href="">dsdsds sddsd</a>
+                                </div>
+                                <div class="clearer"></div>
+                                <div class="comment_text">sfd fsdf sdf sfds f sfdsd fs d fsd fsdf sdf sdf sdfsdf sdf sdf s dfsd fsdf</div>
+                                <div class="comment_attachements">
+                                    <img src="http://placehold.it/50x50">
+                                    <img src="http://placehold.it/50x50">
+                                    <a href="">sfdsdfs.zip <i class="fa fa-chevron-down"></i></a>
+                                    <div class="clearer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </dvi>
+
+    <dvi class="right_Side">
+
+        <div class="right_cont">
+
+            <div class="suggest_tabs">
+                <div>friends</div>
+                <div>rooms</div>
+                <div>interests</div>
+            </div>
+
+            <div class="suggestion interest_list" style="display: none">
+                <div class="sug_item">
+                    <div class="sug_title">trending</div>
+                    <div class="sug_sugestions">
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="sug_item">
+                    <div class="sug_title">trending <br/>week ago</div>
+                    <div class="sug_sugestions">
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="sug_item">
+                    <div class="sug_title">most <br/>popular</div>
+                    <div class="sug_sugestions">
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="sug_item">
+                    <div class="sug_title">nearby</div>
+                    <div class="sug_sugestions">
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                        <div class="interest blue">#fsdfsdf</div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="next_prev">
+                    <span>previous</span> | <span>next</span>
+                </div>
+            </div>
+            <div class="suggestion room_list" style="display: none">
+
+                <div class="sug_item">
+                    <div class="sug_title">suggested</div>
+                    <div class="sug_sugestions">
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+
+                <div class="sug_item">
+                    <div class="sug_title">mutual <br/> interest</div>
+                    <div class="sug_sugestions">
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+
+                <div class="sug_item">
+                    <div class="sug_title">mutual <br/> people</div>
+                    <div class="sug_sugestions">
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+
+                <div class="sug_item">
+                    <div class="sug_title">most <br/> popular</div>
+                    <div class="sug_sugestions">
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+
+                        <div class="room_item">
+                            <div></div>
+                            <a href="">rooom</a>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+
+                <div class="next_prev">
+                    <span>previous</span> | <span>next</span>
+                </div>
+            </div>
+
+            <div class="suggestion people_list">
+
+                <div class="sug_item">
+                    <div class="sug_title">suggested</div>
+                    <div class="sug_sugestions">
+
+                        <div class="width50">
+                            <div class="user_with_image user_pop">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                                <span class="user_pop_body">
+                                   <span class="po_user_image"></span>
+                                    <a href="" class="po_user_name">sdfsdfsdfd</a>
+                                </span>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="sug_item">
+                    <div class="sug_title">mutual <br/>interests</div>
+                    <div class="sug_sugestions">
+
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="sug_item">
+                    <div class="sug_title">mutual <br/>rooms</div>
+                    <div class="sug_sugestions">
+
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="sug_item">
+                    <div class="sug_title">nearby</div>
+                    <div class="sug_sugestions">
+
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                        <div class="width50">
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                            <div class="user_with_image">
+                                <div></div>
+                                <a href="">sfsdfsd sdfsdfsdfsd</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="next_prev">
+                    <span>previous</span> | <span>next</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="right_cont">
+
+            <div class="friend_list">
+                <div class="fr_list">
+                    <div class="user_item green">
+                        <a href="">vakho p.</a>
+                    </div>
+                    <div class="user_item red">
+                        <a href="">vakho p.</a>
+                    </div>
+                    <div class="user_item green">
+                        <a href="">vakho p.</a>
+                    </div>
+                    <div class="user_item green">
+                        <a href="">vakho p.</a>
+                    </div>
+                    <div class="user_item green">
+                        <a href="">vakho p.</a>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="more_list">view more</div>
+            </div>
+
+            <div class="chat_container">
+                <div class="chat_tabs">
+                    <div class="chat_tab active">vaxo xavo <span>x</span></div>
+                    <div class="chat_tab blue">vaxo xavo <span>x</span></div>
+                    <div class="chat_tab red">vaxo xavo <span>x</span></div>
+
+                    <div class="cat_opt blue">+</div>
+                    <div class="cat_opt red">3</div>
+                </div>
+                <div class="chat_data">
+                    <div class="cats_list">
+
+                        <div class="chat_text friend">
+                            <div class="chat_user_info">
+                                <div class="user_item"></div>
+                                <div class="chat_date">23:32</div>
+                            </div>
+                            <div class="chat_text_div">sdfsdfsdf sdfsdf sdfsdf sdf sd f sdf sdfsdfsdf sdfsdf sdf sd f sdf sdfsdfsdf sdfsdf sdf sd f sdf sdfsdfsdf sdfsdf sdf sd f sdf sdf</div>
+                            <div class="clearer"></div>
+                        </div>
+                        <div class="chat_text me">
+                            <div class="chat_text_div">sdfsdfsdf sdfsdf sdfsdf sdf sd f sdf sdfsdfsdf sdfsdf sdf sd f sdf sdfsdfsdf sdfsdf sdf sd f sdf sdfsdfsdf sdfsdf sdf sd f sdf sdf</div>
+                            <div class="chat_date">23:32</div>
+                        </div>
+
+                        <div class="clearer"></div>
+                    </div>
+                    <div class="chat_input">
+                        <textarea placeholder="type text..." onkeyup="textAreaAdjust(this)"></textarea>
+                        <div class="send_text">send</div>
+                        <div class="chat_attachement"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </dvi>
+
+    <div class="clearer"></div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    function textAreaAdjust(o) {
+        o.style.height = "1px";
+        o.style.height = (-20+o.scrollHeight)+"px";
+    }
+
+    var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+    $('#tag_it').tagit({
+        availableTags: sampleTags,
+        // This will make Tag-it submit a single form value, as a comma-delimited field.
+        singleField: true,
+        singleFieldNode: $('#tag_it'),
+        placeholderText:"#add your interest"
+    });
+
+
+</script>
+
+</body>
+</html>

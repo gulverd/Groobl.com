@@ -1,0 +1,29 @@
+﻿
+<div class="col-xs-12" id="boxes_wrapper" ng-controller="userFriendsController as frc">
+    <div class="col-xs-12 activities_all_wrapper">
+        <div class="col-xs-12 activities_title_wrapper">
+            <h4>Friend's List</h4>
+        </div>
+        <div class="col-xs-12 activities_in_wrapper">
+            <div class="col-xs-12 activities">
+                <div class="col-xs-12 activities_list_header_wrapper">
+                    <!--<div class="col-xs-12 activities_date_wrapper">
+                        <h4>A</h4>
+                    </div>-->
+                    <div class="col-xs-12 activities_lists_wrapper" ng-repeat="fr in frc.data">
+                        <div class="col-xs-12 activities_list_wrapper">
+                            <div class="col-xs-6 friend_left_wrp">
+                                <a ui-sref="Profile.Posts.All({id:fr.Id})" class="text_wrap">{{fr.FirstName}} {{fr.LastName}}</a>
+                            </div>
+                            <div class="col-xs-6 friend_right_wrp" ng-click="frc.removeFriend($index)">
+                                <i class="fa fa-times" aria-hidden="true"></i> Remove
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

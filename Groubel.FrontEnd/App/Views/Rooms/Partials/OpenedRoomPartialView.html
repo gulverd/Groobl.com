@@ -1,0 +1,31 @@
+﻿<div class="col-xs-12" id="room_messages_wrapper" ng-controller="openedRoomController as op">
+    <div class="col-xs-12" id="room_messages_cover_wrapper" style="background:url({{op.getlogo(op.openedRoom.Image)}})" ng-if="op.openedRoom.Image!=undefined">
+
+    </div>
+    <div class="col-xs-12" id="room_messages_title_wrapper">
+        <h4>{{op.openedRoom.Name}}</h4>
+    </div>
+    <div class="col-xs-12" id="room_messages_menu_wrapper">
+        <a ui-sref=".Messages({id:op.roomId})" ui-sref-active="btn-primary" class="btn btn-default"><span  id="profile_page_main_buttons">Room</span></a>
+        <a ui-sref=".People({id:op.roomId})" ui-sref-active="btn-primary" class="btn btn-default"><span  id="profile_page_main_buttons">People</span></a>
+        <a ui-sref=".Photos({id:op.roomId})" ui-sref-active="btn-primary" class="btn btn-default"><span  id="profile_page_main_buttons">Photos</span></a>
+        <a ui-sref=".Files({id:op.roomId})" ui-sref-active="btn-primary" class="btn btn-default"><span id="profile_page_main_buttons">Files</span></a>
+    </div>
+
+    <div ng-if="!op.openedRoom.AreMember">
+        <div ng-if="op.openedRoom.Members.length>=op.openedRoom.MaxUsers" class="room_mute room_info">you are not room member. room has maximun number of users, you cannot join</div>
+        <div ng-if="op.openedRoom.Members.length<op.openedRoom.MaxUsers">
+            <div ng-if="!op.openedRoom.RequestSent" class="send_text_request">you are not room member, <span ng-click="op.sendAddRequest()">send request</span> to join room</div>
+            <div ng-if="op.openedRoom.RequestSent" class="send_text_request">add request sent to admin</div>
+        </div>
+        <div ng-if="!op.openedRoom.Visibility" class="room_mute room_info"> room is private you cannot see any content</div>
+    </div>
+
+    <div ng-if="op.openedRoom.AreMember">
+        <div ui-view></div>
+    </div>
+    <div ng-if="!op.openedRoom.AreMember">
+        <div ui-view ng-if="op.openedRoom.Visibility"></div>
+    </div>
+
+</div>

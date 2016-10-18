@@ -1,0 +1,7 @@
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\bin\Debug\GroubelNew.Domain.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\bin\Debug\GroubelNew.Domain.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\bin\Debug\Groubel.Enums.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\bin\Debug\Groubel.Enums.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\obj\Debug\Groubel.Domain.csprojResolveAssemblyReference.cache
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\obj\Debug\GroubelNew.Domain.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.Domain\obj\Debug\GroubelNew.Domain.pdb

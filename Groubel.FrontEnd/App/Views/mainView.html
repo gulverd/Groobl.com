@@ -1,0 +1,42 @@
+﻿<div ng-controller="mainController as treeMV">
+
+    <div id="new_item">
+        <h1>Add New Item:</h1>
+        <div id="add_item">
+            <div>Item Parent: <span>{{treeMV.selectedCategory.parent.name}}</span></div>
+            <input type="text" ng-model="treeMV.selectedCategory.name" />
+            <button ng-click="treeMV.add()">Add New Category</button>
+            <button ng-click="treeMV.clear()">Clear</button>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="tree_item_renderer.html">
+        <a href="" ng-click="treeMV.openMenu(data)">{{data.name}}
+            <div class="dropdown_menu_p dropdown_menu_{{data.id}}" style="height:0">
+                <div class="dropdown_menu">
+                    <div ng-click="treeMV.addChildCategory(data)">Add Child</div>
+                    <div ng-click="treeMV.delete(data)">Delete</div>
+                </div>
+            </div>
+        </a>
+
+        <ul ng-if="data.children.length>0">
+            <li ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'" ng-if="data.name!=''"></li>
+        </ul>
+    </script>
+
+    <div class="tree">
+
+        <ul>
+            <li>
+                <a>Category Tree</a>
+                <ul>
+                    <li ng-repeat="data in treeMV.treeList" ng-include="'tree_item_renderer.html'" ng-if="data.name!=''"></li>
+                </ul>
+            </li>
+        </ul>
+        
+
+    </div>
+
+</div>

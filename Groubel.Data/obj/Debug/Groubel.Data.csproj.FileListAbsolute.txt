@@ -1,0 +1,16 @@
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\Groubel.Data.dll.config
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\Groubel.Data.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\Groubel.Data.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\dotMemory.Unit.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\EntityFramework.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\GroubelNew.Domain.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\Groubel.Enums.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\GroubelNew.Domain.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\dotMemory.Unit.xml
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\EntityFramework.xml
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\bin\Debug\Groubel.Enums.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\obj\Debug\Groubel.Data.csprojResolveAssemblyReference.cache
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\obj\Debug\Groubel.Data.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Data\obj\Debug\Groubel.Data.pdb

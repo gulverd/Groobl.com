@@ -1,0 +1,108 @@
+﻿<div class="col-xs-12" ng-controller="profileController as pr">
+    <div class="col-xs-12" id="boxes_wrapper">
+        <div class="col-xs-12" id="profile_all_wrapper">
+            <div class="col-xs-12" id="profile_wrapper">
+                <div class="col-xs-12 user_profile_image_wrapper">
+                    <img ng-src="{{pr.getlogo(pr.userModel.Image)}}" ng-if="pr.userModel.Image.length>0" id="user_profile_image">
+                
+                
+                
+                </div>
+                <div class="col-xs-12" id="user_profile_info_wrapper">
+                    <div class="col-xs-12" id="user_profile_texts">
+                        <h3>{{pr.userModel.FirstName}} {{pr.userModel.LastName}}</h3>
+                    </div>
+
+
+
+
+                    <div class="col-xs-12" id="user_profile_texts">
+
+                        <button type="button" class="btn btn-info user_post_hover_button"
+                                title="remove from friends"
+                                ng-if="pr.userModel.IsFriend && pr.userModel.Id!=user.userModel.Id"
+                                ng-click="user.removeFriend(pr.userModel)"
+                                >Friends <i class="fa fa-users" aria-hidden="true"></i></button>
+
+                        <if_state ng-if="!pr.userModel.IsFriend && pr.userModel.Id!=user.userModel.Id">
+
+                            <button type="button" 
+                                    class="btn btn-default" 
+                                    id="exp_friends_wrp_not_friend_btn"
+                                    ng-if="pr.userModel.RequestSent"
+                                    >Reqsuest sent <i class="fa fa-users" aria-hidden="true"></i></button>
+
+                            <button type="button" class="btn btn-default" 
+                                    id="exp_friends_wrp_not_friend_btn"
+                                    ng-click="user.addFriend(pr.userModel)"
+                                    ng-if="pr.userModel.RequestRecived"
+                                    title="request received, add to friends"
+                                    >Reqsuest received <i class="fa fa-users" aria-hidden="true"></i></button>
+
+                            <button type="button" 
+                                    ng-if="!pr.userModel.RequestRecived && !pr.userModel.RequestSent"
+                                    ng-click="user.sendRequest(pr.userModel.Id, pr.userModel)" 
+                                    class="btn btn-default" id="exp_friends_wrp_not_friend_btn"
+                                    >Add friend <i class="fa fa-users" aria-hidden="true"></i></button>
+
+                        </if_state>
+
+                   </div>
+
+                        <div class="col-xs-12" id="user_profile_texts">
+                            <h4>
+                                <i class="fa fa-male" aria-hidden="true"></i>
+                                <span ng-if="pr.userModel.Gender==1">male</span>
+                                <span ng-if="pr.userModel.Gender==2">female</span> - {{pr.userModel.Age}} Years Old
+                            </h4>
+                        </div>
+                        <div class="col-xs-12" id="user_profile_texts_info">
+                            <h4><i class="fa fa-circle-o" aria-hidden="true"></i> Active {{pr.userModel.LastLoginString}}</h4>
+                        </div>
+                        <!--<div class="col-xs-6" id="user_profile_texts_info">
+            <h4><i class="fa fa-map-marker" aria-hidden="true"></i> Tbilisi - Varketili </h4>
+        </div>-->
+                    </div>
+            </div>
+            <div class="col-xs-12" id="top_interests_wrapper_in_profile">
+                <div class="col-xs-12" id="main_interests_header">
+                    <h4>I'm interested <span><i class="fa fa-check-circle" aria-hidden="true"></i></span></h4>
+                </div>
+                <div class="col-xs-12" id="main_interests_wrapper" ng-init="opened=false">
+                    <div class="col-xs-12" id="groobl_interests_wrapper" ng-class="{active:!opened}">
+
+                        <div class="" id="interest_tabs" 
+                             ng-class="{gray2:!int.IsMain,blue:int.IsMain}" 
+                             ng-if="int.Id>0" 
+                             ng-repeat="int in pr.userModel.Interests" 
+                             ng-click="user.openInterest(int.Id)">
+                            {{int.Name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" id="more_interests_wrapper" ng-click="opened=!opened">
+                    <hr id="more_interests_divider">
+                    <span id="show_more_span">Show <span ng-if="!opened">more</span><span ng-if="opened">less</span>...</span> <i class="fa" ng-class="{'fa-angle-double-down':!opened,'fa-angle-double-up':opened}" id="more_interests_icon"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12" id="boxes_wrapper">
+        <div class="col-xs-12" id="profile_page_main_buttons_wrapper">
+            <span ng-class="{activPar: pr.selected==true}">
+                <a ui-sref=".Posts.All({id:pr.userModel.Id})" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Posts</span></a>
+               </span>
+                 <a ui-sref=".Activity({id:pr.userModel.Id})" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Activity</span></a>
+                <a ui-sref=".Rooms({id:pr.userModel.Id})" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Rooms</span></a>
+                <a ui-sref=".Friends({id:pr.userModel.Id})" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Friends</span></a>
+                <a ui-sref=".Photos({id:pr.userModel.Id})" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Photos</span></a>
+                <a ui-sref=".Files({id:pr.userModel.Id})" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Files</span></a>
+                <a ui-sref=".Personal({id:pr.userModel.Id})" ng-if="pr.userModel.Id==user.userModel.Id" class="btn btn-default" ui-sref-active="btn-primary"><span id="profile_page_main_buttons">Personal</span></a>
+</div>
+    </div>
+
+
+    <div ui-view></div>
+</div>

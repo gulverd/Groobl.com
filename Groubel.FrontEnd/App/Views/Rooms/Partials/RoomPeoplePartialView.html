@@ -1,0 +1,26 @@
+﻿<div class="col-lg-12" style="padding:20px 0">
+
+    <user ng-repeat="(key, value) in op.groupedMembers" ng-if="!op.openedRoom.Anonimus">
+        <div class="col-lg-12">{{key}}</div>
+
+        <div class="col-xs-12" id="chat_list_wrapper" ng-repeat="us in value">
+            <div class="col-xs-2" id="user_chat_image_wrapper">
+                <img ng-src="{{op.getlogo(us.Image)}}" id="user_chat_image">
+            </div>
+            <div class="col-xs-4" id="user_chat_username_wrapper">
+                <a ui-sref="Profile.Posts.All({id:us.Id})">{{us.FirstName}} {{us.LastName}}</a>
+            </div>
+            <div class="col-lg-6">
+
+                <if-statement ng-if="op.userId==op.openedRoom.UserId">
+                    <span class="btn" ng-class="{active:us.Status==1}" ng-click="op.changeStatus(us,1)">Activate</span> |
+                    <span class="btn" ng-class="{active:us.Status==2}" ng-click="op.changeStatus(us,2)">Hide</span> |
+                    <span class="btn" ng-class="{active:us.Status==3}" ng-click="op.changeStatus(us,3)">Mute</span>
+                </if-statement>
+
+            </div>
+        </div>
+  
+    </user>
+
+</div>

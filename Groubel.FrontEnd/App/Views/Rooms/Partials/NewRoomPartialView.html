@@ -1,0 +1,131 @@
+﻿<div ng-controller="roomsController as room">
+    <div class="col-xs-12" id="create_group_header">
+        <h4>Start Conversation</h4>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-12" id="room_search_wrapper">
+            <input class="search_room_div" ng-model="room.searchModel" ng-change="room.search()" placeholder="Type username or room name...">
+            <div class="search_room_button_wrapper">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="search_result" style="display: block" ng-if="room.users.length>0 && room.rooms.length>0">
+            <div class="col-xs-12" >people</div>
+
+            <div class="col-xs-12" id="chat_list_wrapper" ng-repeat="us in room.users" ng-class="{isfriend:us.IsFriend}">
+                <div class="col-xs-3" id="user_chat_image_wrapper">
+                    <img  ng-src="{{room.getlogo(us.Image)}}" id="user_chat_image">
+                </div>
+                <div class="col-xs-9" id="user_chat_username_wrapper">
+                    <a ui-sref="Profile.Posts.All({id:us.Id})">{{us.FirstName}} {{us.LastName}}</a>
+                </div>
+            </div>
+
+            <div class="col-xs-12" >rooms</div>
+
+            <div class="col-xs-12" id="chat_list_wrapper"  ng-repeat="rm in room.rooms" ng-class="{private_room:rm.Visibility==true,public_room:rm.Visibility==false}">
+                <div class="col-xs-3" id="user_chat_image_wrapper">
+                    <img ng-src="{{room.getlogo(rm.Image)}}" id="user_chat_image">
+                </div>
+                <div class="col-xs-9" id="user_chat_username_wrapper">
+                    <a href="#/Rooms/Opened/Messages/{{rm.Id}}">{{rm.Name}}  </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12" id="create_group_header">
+        <hr id="more_interests_divider">
+        <h4>Create room <span><i class="fa fa-users" aria-hidden="true"></i></span></h4>
+    </div>
+    <div class="col-xs-12">
+        <form method="post" action="" class="ng-pristine ng-valid">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Room name</label>
+                    <input type="text" placeholder="Enter room name" class="form-control"  ng-model="room.roomModel.Name">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Interests</label>
+                    <input type="text" placeholder="Add interests" class="form-control" id="tag_it2">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Room Type</label>
+                    <select class="form-control" ng-model="room.roomModel.Visibility">
+                        <option value="true" ng-selected="room.roomModel.Visibility==true">Public</option>
+                        <option value="false"  ng-selected="room.roomModel.Visibility==false">Private</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Number of users</label>
+                    <input type="number" min="1" max="100" class="form-control" ng-model="room.roomModel.MaxUsers" ng-change="room.maxValue()">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Add users</label>
+                    <input type="text" placeholder="Enter to search users" class="form-control" ng-model="room.roomModel.MemberName" ng-change="room.memberNameChange()">
+                </div>
+                <div class="search_result" ng-if="room.members.length>0">
+                    <div class="col-xs-12" id="chat_list_wrapper" 
+                         ng-repeat="fr in room.members"ng-click="room.addToMembers(fr)" ng-if="room.getMemberState(fr.Id)">
+                        <div class="col-xs-3" id="user_chat_image_wrapper">
+                            <img ng-src="{{room.getlogo(fr.Image)}}" id="user_chat_image">
+                        </div>
+                        <div class="col-xs-9" id="user_chat_username_wrapper">
+                            <a>{{fr.FirstName}} {{fr.LastName}}</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Group Cover image</label>
+                    <upload to="/Rooms/UploadImage" ng-model="room.roomModel.Image" id="upload_button"></upload>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label ng-click="room.getUsers()">Get users</label>
+                </div>
+                <div style="width: 100%;min-height: 56px;">
+
+                    <div class="col-xs-12" id="chat_list_wrapper" ng-repeat="fr in room.roomModel.Members" ng-click="room.removeMember($index)">
+                        <div class="col-xs-3" id="user_chat_image_wrapper">
+                            <img ng-src="{{room.getlogo(fr.Image)}}" id="user_chat_image">
+                        </div>
+                        <div class="col-xs-9" id="user_chat_username_wrapper">
+                            <a>{{fr.FirstName}} {{fr.LastName}}</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" 
+                               ng-checked="room.roomModel.Anonimus" 
+                               ng-model="room.roomModel.Anonimus"> Anonymous group
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12" id="create_room_submit_wrapper">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" id="create_room_button"  ng-click="room.create()">Create room!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

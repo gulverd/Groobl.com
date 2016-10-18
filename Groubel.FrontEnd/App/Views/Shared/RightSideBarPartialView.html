@@ -1,0 +1,405 @@
+﻿
+<div class="col-xs-6 middle_side" ng-controller="suggestionsController as sg">
+    <div class="middle_column_wrapper">
+        <div class="col-xs-12 midl" id="boxes_wrapper">
+            <div class="col-xs-12" id="members_wrp">
+
+                <div class="col-xs-12" id="members_buttons_wrarpper">
+                    <div class="col-xs-4 members_buttons_wrps">
+                        <button class="btn  btn-default" id="members_buttons" ng-class="{'btn-primary':sg.tab==1}" ng-click="sg.setTab(1)">Friends</button>
+                    </div>
+                    <div class="col-xs-4 members_buttons_wrps">
+                        <button class="btn btn-default" id="members_buttons"  ng-class="{'btn-primary':sg.tab==2}" ng-click="sg.setTab(2)">Rooms</button>
+                    </div>
+                    <div class="col-xs-4 members_buttons_wrps">
+                        <button class="btn btn-default" id="members_buttons" ng-class="{'btn-primary':sg.tab==3}" ng-click="sg.setTab(3)">Interests</button>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 sg_par" id="suggested_members_wrapper">
+
+                    <div class="sg_div sg{{sg.tab}}">
+                        <div class="col-xs-4"  style="padding:0">
+
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-hashtag" aria-hidden="true"></i> Mutual Interests</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left" ng-repeat="us in sg.suggestions['1']['2']" ng-if="$index<2">
+                                    <a ui-sref="Profile.Posts.All({id:us.Id})" user data-id="{{us.Id}}">
+                                        <div class="col-xs-12 suggested_img_wrp" >
+                                            <img ng-src="{{sg.getlogo(us.Image)}}" id="suggested_image">
+                                        </div>
+                                        <div class="col-xs-12 suggested_text_wrp">
+                                            {{us.Name}}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left" ng-repeat="us in sg.suggestions['1']['4']" ng-if="$index<2">
+                                    <a  ui-sref="Profile.Posts.All({id:us.Id})" user data-id="{{us.Id}}">
+                                        <div class="col-xs-12 suggested_img_wrp">
+                                            <img ng-src="{{sg.getlogo(us.Image)}}" id="suggested_image">
+                                        </div>
+                                        <div class="col-xs-12 suggested_text_wrp">
+                                            {{us.Name}}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-users" aria-hidden="true"></i> Mutual Rooms</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left"  ng-repeat="us in sg.suggestions['1']['3']" ng-if="$index<2">
+                                    <a  ui-sref="Profile.Posts.All({id:us.Id})" user data-id="{{us.Id}}">
+                                        <div class="col-xs-12 suggested_img_wrp">
+                                            <img ng-src="{{sg.getlogo(us.Image)}}" id="suggested_image">
+                                        </div>
+                                        <div class="col-xs-12 suggested_text_wrp">
+                                            {{us.Name}}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" id="suggested_members_arrows_wrapper">
+                                <a ng-click="sg.userNav(-1)"  ng-class="{disable:sg.userSteps==0}">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous</a> | 
+                                <a ng-click="sg.userNav(1)">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4"  style="padding:0">
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-hashtag" aria-hidden="true"></i> Mutual Interests</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left" ng-repeat="rm in sg.suggestions['2']['2']">
+                                    <a ui-sref="Rooms.Opened.Messages({id:rm.Id})">
+                                        <div class="col-xs-12 suggested_img_wrp">
+                                            <img ng-src="{{sg.getlogo(rm.Image)}}" id="suggested_image">
+                                        </div>
+                                        <div class="col-xs-12 suggested_text_wrp">
+                                            {{rm.Name}}
+                                        </div>
+                                    </a>
+                                </div>
+
+                                
+                            </div>
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-user" aria-hidden="true"></i> Friends in Room</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left" ng-repeat="rm in sg.suggestions['2']['3']">
+                                    <a ui-sref="Rooms.Opened.Messages({id:rm.Id})">
+                                        <div class="col-xs-12 suggested_img_wrp">
+                                            <img ng-src="{{sg.getlogo(rm.Image)}}" id="suggested_image">
+                                        </div>
+                                        <div class="col-xs-12 suggested_text_wrp">
+                                            {{rm.Name}}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-star" aria-hidden="true"></i> Most Popular</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left" ng-repeat="rm in sg.suggestions['2']['4']" ng-if="$index<2">
+                                    <a ui-sref="Rooms.Opened.Messages({id:rm.Id})">
+                                        <div class="col-xs-12 suggested_img_wrp">
+                                            <img ng-src="{{sg.getlogo(rm.Image)}}" id="suggested_image">
+                                        </div>
+                                        <div class="col-xs-12 suggested_text_wrp">
+                                            {{rm.Name}}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" id="suggested_members_arrows_wrapper">
+                                <a  ng-click="sg.roomNav(-1)"  ng-class="{disable:sg.roomSteps==0}">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous</a> | 
+                                <a  ng-click="sg.roomNav(1)">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4"  style="padding:0">
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-bolt" aria-hidden="true"></i> Trending</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left">
+
+                                        <div class="col-xs-12 suggested_img_wrp" ng-if="$index==0"  ng-repeat="int in sg.suggestions['3']['1']">
+                                            <div class="" id="interest_tabs_not_liked_suggested" ui-sref="Posts({id: int.Id})" ng-class="{blue:int.IsMine, gray2:!int.IsMine}">
+                                                #{{int.Name}}
+                                            </div>
+                                        </div>
+
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp">
+
+                                    <div class="col-xs-12 suggested_img_wrp" ng-if="$index==1" ng-repeat="int in sg.suggestions['3']['1']">
+                                        <div class="" id="interest_tabs_not_liked_suggested" ui-sref="Posts({id: int.Id})" ng-class="{blue:int.IsMine, gray2:!int.IsMine}">
+                                            #{{int.Name}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-star" aria-hidden="true"></i> Most Popular</h4>
+                                </div>
+
+                                <div class="col-xs-6 suggested_cont_wrp left">
+
+                                    <div class="col-xs-12 suggested_img_wrp" ng-if="$index==0" ng-repeat="int in sg.suggestions['3']['3']">
+                                        <div class="" id="interest_tabs_not_liked_suggested" ui-sref="Posts({id: int.Id})" ng-class="{blue:int.IsMine, gray2:!int.IsMine}">
+                                            #{{int.Name}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp">
+
+                                    <div class="col-xs-12 suggested_img_wrp" ng-if="$index==1" ng-repeat="int in sg.suggestions['3']['3']">
+                                        <div class="" id="interest_tabs_not_liked_suggested" ui-sref="Posts({id: int.Id})" ng-class="{blue:int.IsMine, gray2:!int.IsMine}">
+                                            #{{int.Name}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="suggested_list">
+                                <div class="col-xs-12 suggested_header_wrp">
+                                    <h4><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby</h4>
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp left">
+
+                                    <div class="col-xs-12 suggested_img_wrp" ng-if="$index==0" ng-repeat="int in sg.suggestions['3']['4']">
+                                        <div class="" id="interest_tabs_not_liked_suggested" ui-sref="Posts({id: int.Id})" ng-class="{blue:int.IsMine, gray2:!int.IsMine}">
+                                            #{{int.Name}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-6 suggested_cont_wrp">
+
+                                    <div class="col-xs-12 suggested_img_wrp" ng-if="$index==1" ng-repeat="int in sg.suggestions['3']['4']">
+                                        <div class="" id="interest_tabs_not_liked_suggested" ui-sref="Posts({id: int.Id})" ng-class="{blue:int.IsMine, gray2:!int.IsMine}">
+                                            #{{int.Name}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12" id="suggested_members_arrows_wrapper">
+                                <a ng-click="sg.interestNav(-1)" ng-class="{disable:sg.interestSteps==0}"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous</a> |
+                                 <a ng-click="sg.interestNav(1)">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+            </div>
+        </div> 					
+       			
+
+    </div>
+</div>
+
+<div class="col-xs-6 userFr" id="right_side" ng-controller="friendsController as friend" >
+    <div class="sidebar-nav-fixed pull-right affix"  ng-controller="chatController as ct">
+
+        <div class="col-xs-12 right_side_wpra" id="boxes_wrapper" ng-if="friend.opened">
+            <div class="col-xs-12" id="chat_all_wrapper">
+                <div class="col-xs-12" id="chat_header_wrapper">
+                    <div class="col-xs-12" id="chat_search_wrapper">
+                        <div class="col-xs-12" id="chat_title_wrapper">
+                            <h4>Groobl Messenger</h4>
+                        </div>
+                        <div class="col-xs-12" id="chat_search_wrapper">
+                            <input type="text" class="col-xs-12" id="chat_search_div" placeholder="Type to serarch people/room" ng-model="friend.searchModel" ng-change="friend.search()">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-12" id="chat_friends_wrapper">
+
+                    <div class="col-xs-12" id="chat_list_wrapper" ng-repeat="fr in friend.friends" ng-click="ct.openChat(fr.Id,friend)">
+                        <div class="col-xs-3" id="user_chat_image_wrapper">
+                            <img ng-src="{{friend.getlogo(fr.Image)}}" id="user_chat_image">
+                        </div>
+                        <div class="col-xs-9" id="user_chat_username_wrapper">
+                            <span>{{fr.FirstName}} {{fr.LastName}}</span>
+                            <div class="notification_icon_closed_chat" ng-if="ct.getCoutForUser(fr.Id)>0">{{ct.getCoutForUser(fr.Id)}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>			
+        		
+        <div class="col-xs-12 right_side_wpra" id="boxes_wrapper" ng-if="!friend.opened">
+            <div class="col-xs-12" id="chat_all_wrapper">
+                <div class="col-xs-12" id="chat_header_wrapper">
+                    <div class="col-xs-12" id="chat_search_wrapper">
+                        <div class="col-xs-12" id="chat_title_wrapper">
+                            <h4>Groobl Messenger</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 chat_conversation_header_members">
+
+                    <!--<div class="chat_tab blue"  >
+                        <a  class="text_wrap" > {{ct.getFriendName(rm, user,false)}}</a>
+                        <span ng-click="ct.closeChat(rm.Id,friend)">x</span>
+                    </div>-->
+
+                    <div class="col-xs-3 chat_conversation_header_user_wrapper"
+                         ng-repeat="rm in ct.userRooms"
+                         ng-class="{red: rm.UnSeenCmments>0, active:rm.Id==ct.openedRoom.Id}"
+                         ng-click="ct.openRoomById(rm.Id)"
+                         title="{{rm.UserName}}"
+                         >
+                        <div class="col-xs-12 chat_conversation_header_user_image_wrapper">
+                            <img ng-src="{{ct.getlogo(rm.UserImage)}}" id="user_chat_images">
+                            <div class="notification_icon">{{rm.UnSeenCmments}}</div>
+                        </div>
+                        <div class="col-xs-12 chat_conversation_header_user_name_wrapper">
+                            {{rm.UserName}}
+                        </div>
+                    </div>
+
+                  </div>
+                <div class="col-xs-12" id="chat_colapse_wrapper">
+                    <a  ng-click="friend.opened=!friend.opened"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+                </div>
+
+
+                <div class="col-xs-12" id="chat_conversation_wrapper">
+                    <div class="col-xs-12" id="chat_conversation_header">
+                        <div class="col-xs-3" id="chat_conversation_header_left_side" ng-click="friend.opened=!friend.opened" ng-if="ct.userRooms.length>0">
+                            <i class="fa fa-chevron-left" aria-hidden="true" id="close_chat_btn"></i>
+                        </div>
+                        <div class="col-xs-9" id="chat_conversation_header_right_side">
+                            <h4 ng-repeat="rm in ct.userRooms" ng-if="rm.Id==ct.openedRoom.Id">{{rm.UserName}}</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 chat_area">
+
+
+                        <div class="chat_text bb-{{com.User.Id}}"  ng-class="{friend:ct.userId!=com.User.Id, me:ct.userId==com.User.Id}">
+                            <div class="chat_user_info" ng-if="ct.userId!=com.UserId">
+                                <div class="user_item">
+                                    <img ng-src="{{ct.getlogo(com.User.Image)}}" />
+                                </div>
+
+                            </div>
+                            <div class="chat_text_div">{{com.Text}}</div>
+                            <div class="clearer"></div>
+                            <div class="chat_date">{{com.DateString}}</div>
+                            <div class="clearer"></div>
+                        </div>
+
+                        <comment ng-repeat="com in ct.openedRoom.Comments">
+
+                            <div class="col-xs-12" id="chat_conversation_list_wrapper" ng-if="ct.userId!=com.User.Id">
+                                <div class="col-xs-3" id="chat_conversation_list_left_image_wrapper">
+                                    <img ng-src="{{ct.getlogo(com.User.Image)}}" id="conversation_image">
+                                </div>
+                                <div class="col-xs-9" id="chat_conversation_left_p_wrapper">
+                                    <div id="left_side_conversation_message_wrapper">
+                                        <div class="col-xs-12" id="left_side_message_wrapper">
+
+                                            <span ng-if="!ct.getStateOfComment(com.Text)">{{com.Text}}</span>
+                                            
+                                            <img src="Content/Images/em_{{ct.getValueOfComment(com.Text)}}.png" ng-if="ct.getStateOfComment(com.Text)"/>
+
+                                            <a href="{{ct.getlogo(com.Attachement)}}" ng-if="com.ImageString.length==0 && com.Attachement.length>0">Attachement</a>
+                                            <img ng-src="{{ct.getlogo(com.ImageString)}}" ng-if="com.ImageString.length>0" style="width:70px;" />
+
+
+                                        </div>
+                                        <div class="col-xs-12" id="left_side_message_date_wrapper">
+                                            {{com.DateString}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12" id="chat_conversation_list_wrapper" ng-if="ct.userId==com.User.Id">
+                                <div class="col-xs-9" id="chat_conversation_right_p_wrapper">
+                                    <div id="right_side_conversation_message_wrapper">
+                                        <div class="col-xs-12" id="right_side_message_wrapper">
+                                           
+                                            <span ng-if="!ct.getStateOfComment(com.Text)">{{com.Text}}</span>
+
+                                            <img src="Content/Images/em_{{ct.getValueOfComment(com.Text)}}.png" ng-if="ct.getStateOfComment(com.Text)" />
+
+
+                                            <a href="{{ct.getlogo(com.Attachement)}}" ng-if="com.ImageString.length==0 && com.Attachement.length>0">Attachement</a>
+                                            <img ng-src="{{ct.getlogo(com.ImageString)}}" ng-if="com.ImageString.length>0"  id="chat_snd_img" />
+
+                                        </div>
+                                        <div class="col-xs-12" id="right_side_message_date_wrapper">
+                                            {{com.DateString}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3" id="chat_conversation_list_right_image_wrapper">
+                                    <img ng-src="{{ct.getlogo(com.User.Image)}}" id="conversation_image">
+                                </div>
+                            </div>
+                        </comment>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 chat_emmo_input_wrapper">
+
+                    <div class="col-xs-12" id="chat_input_emmotions_wrapper">
+                        <div class="col-xs-2" id="chat_input_emo_wrap" ng-click="ct.sendEmo(1)">
+                            <img src="Content/Images/em_1.png" id="chat_input_emmotion_icons">
+                        </div>
+                        <div class="col-xs-2" id="chat_input_emo_wrap" ng-click="ct.sendEmo(2)">
+                            <img src="Content/Images/em_2.png" id="chat_input_emmotion_icons">
+                        </div>
+                        <div class="col-xs-2" id="chat_input_emo_wrap" ng-click="ct.sendEmo(3)">
+                            <img src="Content/Images/em_3.png" id="chat_input_emmotion_icons">
+                        </div>
+                        <div class="col-xs-2" id="chat_input_emo_wrap" ng-click="ct.sendEmo(4)">
+                            <img src="Content/Images/em_4.png" id="chat_input_emmotion_icons">
+                        </div>
+                        <div class="col-xs-2" id="chat_input_emo_wrap" ng-click="ct.sendEmo(5)">
+                            <img src="Content/Images/em_5.png" id="chat_input_emmotion_icons">
+                        </div>
+                        <div class="col-xs-2" id="chat_input_emo_wrap" ng-click="ct.sendEmo(6)">
+                            <img src="Content/Images/em_6.png" id="chat_input_emmotion_icons">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12" id="chat_input_wrapper">
+                        <div class="col-xs-12" id="chat_input">
+                            <textarea ng-model="ct.roomCommentModel.Text" ng-enter="ct.sendComment()" data-placeholder="Say something..." id="chat_input_div"></textarea>
+                            <div class="" id="input_chat_attachment_wraper" onclick="comment_file()">
+                                <i class="fa fa-paperclip" aria-hidden="true" id="chat_attachment_icon" ></i>
+                                
+                            </div>
+                            <input type="file" id="comment_file" style="display:none" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿<div class="content_wrapper" ng-controller="roomsController as room">
+    <div class="col-xs-12" id="boxes_wrapper">
+        <div class="col-xs-12" id="create_group_header">
+            <h4>My Rooms <span><i class="fa fa-users" aria-hidden="true"></i></span></h4>
+        </div>
+        <div class="col-xs-12" ng-init="opened=false">
+
+            <div class="col-xs-3" ng-repeat="rm in room.userRooms" ng-if="$index<4 || opened" ui-sref=".Opened.Messages({id:rm.Id})" ui-sref-active="blue">
+                <div class="col-xs-12" id="rooms_thumb_wrapper">
+                    <div class="col-xs-12" id="rooms_thumb_image_wrapper">
+                        <div class="room_notification">
+                            21
+                        </div>
+                        <img ng-src="{{room.getlogo(rm.Image)}}" id="rooms_thumb_image">
+                        <div class="room_type">
+                            Private
+                        </div>
+                    </div>
+                    <div class="col-xs-12" id="rooms_thumb_title_wrapper">
+                        {{rm.Name}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12" id="more_interests_wrapper" ng-click="opened=!opened">
+                <hr id="more_interests_divider">
+                <span id="show_more_span" >Show more...</span> <i class="fa "  ng-class="{'fa-angle-double-down':!opened,'fa-angle-double-up':opened}" aria-hidden="true" id="more_interests_icon"></i>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12" id="boxes_wrapper">
+
+        <div ui-view></div>
+
+
+
+    </div>
+</div>

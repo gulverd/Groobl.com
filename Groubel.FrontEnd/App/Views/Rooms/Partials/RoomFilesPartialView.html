@@ -1,0 +1,16 @@
+﻿
+<div class="col-lg-10" style="padding:20px">
+
+    <div class="search_result">
+        <br>
+
+        <fl ng-repeat="(key, value) in op.files">
+            <div class="search_header">{{key}}</div>
+            <div class="user_with_image isfriend" ng-repeat="fl in value">
+                <a href="{{op.getlogo(fl)}}" target="_blank">{{op.getAttachementName(fl)}}</a>
+            </div>
+        </fl>
+
+    </div>
+
+</div>

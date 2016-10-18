@@ -1,0 +1,73 @@
+.login_body{
+    background-color: #719ab9;
+}
+#middle_container_login{
+    width: 450px;
+    padding: 0;
+    margin-top: 130px;
+}
+.login_title{
+    text-align: center;
+}
+.login_title h2{
+    color:white;
+    font-family: 'Roboto', sans-serif;
+}
+.login_title h3{
+    color:white;
+    font-family: 'Roboto', sans-serif;
+}
+.login_bt{
+    width: 100%;
+    margin-right: 4px;
+    font-family: 'Roboto', sans-serif;
+}
+.join_bt{
+    width: 100%;
+    margin-left: 4px;
+    font-family: 'Roboto', sans-serif;
+}
+.login_bt_wrps{
+    padding:0;
+}
+.login_inputs_wrp{
+    padding: 0;
+}
+.login_buts_wrp{
+    padding: 0;
+}
+.login_links_wrp{
+    padding: 0;
+}
+.login_ln_wrps{
+   padding: 0; 
+   padding-top: 10px;
+   text-align: center;
+}
+.login_ln_wrps a{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
+.alerta{
+    color: #ca0000;
+    font-weight: 500;
+}
+.reg_lab{
+    font-weight: 500;
+    color: white;
+}
+.ch_int_wrp{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.ch_int_bt{
+    margin-bottom: 3px;
+    margin-right: 3px;
+}
+
+.form-control.red {
+    border-color:#ca0000
+}

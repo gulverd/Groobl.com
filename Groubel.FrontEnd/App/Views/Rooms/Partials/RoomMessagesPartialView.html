@@ -1,0 +1,76 @@
+﻿
+
+
+<div class="col-xs-12" id="room_comment_lists_wrapper">
+
+    <div class="col-xs-12 room_comment_list " ng-repeat="cm in op.openedRoom.Comments" ng-class="{author:op.userId!=cm.UserId}">
+        <div class="col-xs-12" id="room_comment_list_top_wrapper">
+            <div class="room_comment_list_comment_date_wrapper">
+                {{cm.DateString}}
+            </div>
+            <div class="room_comment_author_wrapper" >
+                <div class="room_comment_author_link_wrapper">
+                    <a ui-sref="Profile.Posts.All({id:cm.User.Id})" class="user_status_{{op.getMemberStatus(cm.User.Id)}}">{{cm.User.FirstName}} {{cm.User.LastName}}</a>
+                </div>
+                <div class="room_comment_author_image_wrapper">
+                    <a><img ng-src="{{room.getlogo(cm.User.Image)}}" id="room_comment_author_image"/></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12" id="room_comment_list_comment_wrapper">
+
+            <span ng-if="!op.getStateOfComment(cm.Text)">{{cm.Text}}</span>
+
+            <img src="Content/Images/em_{{op.getValueOfComment(cm.Text)}}.png" ng-if="op.getStateOfComment(cm.Text)" />
+
+            <div class="chat_att" ng-if="cm.Attachement.length>0">
+
+                <img ng-src="{{op.getlogo(cm.ImageString)}}"style="width:100px;" ng-if="cm.ImageString.length>0">
+
+                <div class="comment_attachements rooms">
+                    <a href="{{op.getlogo(cm.AttachementString)}}" ng-if="cm.AttachementString.length>0 && cm.ImageString.length==0" target="_blank">{{op.getAttachementName(cm.AttachementString)}} <i class="fa fa-chevron-down"></i></a>
+                </div>
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12" id="room_comment_wrapper">
+
+
+    <div class="col-xs-12 room_emmotions_wrapper" >
+        <div class="col-xs-1" id="chat_input_emo_wrap" ng-click="op.sendEmo(1)">
+            <img src="Content/Images/em_1.png" id="chat_input_emmotion_icons">
+        </div>
+        <div class="col-xs-1" id="chat_input_emo_wrap" ng-click="op.sendEmo(2)">
+            <img src="Content/Images/em_2.png" id="chat_input_emmotion_icons">
+        </div>
+        <div class="col-xs-1" id="chat_input_emo_wrap" ng-click="op.sendEmo(3)">
+            <img src="Content/Images/em_3.png" id="chat_input_emmotion_icons">
+        </div>
+        <div class="col-xs-1" id="chat_input_emo_wrap" ng-click="op.sendEmo(4)">
+            <img src="Content/Images/em_4.png" id="chat_input_emmotion_icons">
+        </div>
+        <div class="col-xs-1" id="chat_input_emo_wrap" ng-click="op.sendEmo(5)">
+            <img src="Content/Images/em_5.png" id="chat_input_emmotion_icons">
+        </div>
+        <div class="col-xs-1" id="chat_input_emo_wrap" ng-click="op.sendEmo(6)">
+            <img src="Content/Images/em_6.png" id="chat_input_emmotion_icons">
+        </div>
+    </div>
+
+    <div class="col-xs-12" id="room_comment">
+        <div ng-if="op.getMemberStatus(op.userId)==3" class="room_mute">room administrator muted your user, you cannot send comments!</div>
+        <div ng-if="!op.openedRoom.AreMember" class="room_mute">you must be room member to comment</div>
+
+        <div ng-if="op.getMemberStatus(op.userId)!=3 && op.openedRoom.AreMember">
+            <textarea placeholder="type text..." id="add_comment_in_room_div" ng-enter="op.sendComment()" ng-model="op.roomCommentModel.Text"></textarea>
+
+            <input type="file" style="display:none" id="comment_file" />
+            <div class="" id="comment_attachment" onclick="attacheFile()">
+                <i class="fa fa-paperclip" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+

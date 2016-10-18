@@ -1,0 +1,15 @@
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\GroubelNew.BLL.dll.config
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\GroubelNew.BLL.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\GroubelNew.BLL.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\Groubel.Data.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\Groubel.Enums.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\Groubel.Helpers.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\GroubelNew.Domain.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\Groubel.Data.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\Groubel.Enums.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\Groubel.Helpers.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\GroubelNew.Domain.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\bin\Debug\EntityFramework.xml
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\obj\Debug\Groubel.BLL.csprojResolveAssemblyReference.cache
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\obj\Debug\GroubelNew.BLL.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\GroubelNew.BLL\obj\Debug\GroubelNew.BLL.pdb

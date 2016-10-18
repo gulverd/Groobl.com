@@ -1,0 +1,4 @@
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Enums\bin\Debug\Groubel.Enums.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Enums\bin\Debug\Groubel.Enums.pdb
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Enums\obj\Debug\Groubel.Enums.dll
+C:\Users\v.pataraia\Source\Workspaces\www.site.com\GroubelNewReddesign\Groubel.Enums\obj\Debug\Groubel.Enums.pdb

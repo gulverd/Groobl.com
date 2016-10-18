@@ -1,0 +1,54 @@
+﻿
+<div class="profile_content" ng-controller="userRoomsController as rmc" style="display:none">
+
+    <div class="profile_second_menu">
+        <div ng-click="rmc.filter=0" ng-class="{active:rmc.filter==0}">all</div>
+        <div ng-click="rmc.filter=1" ng-class="{active:rmc.filter==1}">{{pr.userModel.FirstName}}'s rooms</div>
+        <div ng-click="rmc.filter=2" ng-class="{active:rmc.filter==2}">mutual</div>
+    </div>
+
+    <div class="profile_content_div">
+
+        <div class="room_tumb_item" ng-repeat="rm in rmc.data" ui-sref="Rooms.Opened.Messages({id:rm.Id})" ng-if="rmc.getRoomState(rm)">
+            <div class="room_bg" style="background:url({{rmc.getlogo(rm.Image)}})">
+                <!--<img ng-src="{{rmc.getlogo(rm.Image)}}">-->
+            </div>
+            <a href="" class="room_tumb_name">{{rm.Name}}</a>
+            <div class="room_thmb_icon" ng-if="rm.Visibility" style="opacity:0"></div>
+            <div class="room_thmb_icon" ng-if="!rm.Visibility"></div>
+            <div class="room_thmb_text border_box">{{rm.MemberName[0]}}, {{rm.MemberName[1]}} and {{rm.MemberName.length}} others are in this room</div>
+        </div>
+
+        <div class="clearer"></div>
+    </div>
+</div>
+<div class="col-xs-12" id="boxes_wrapper" ng-controller="userRoomsController as rmc">
+    <div class="col-xs-12 activities_all_wrapper">
+        <div class="col-xs-12 activities_title_wrapper">
+            <h4>Rooms</h4>
+        </div>
+        <div class="col-xs-12 activities_rooms_nav">
+            <ul>
+                <li><a ng-click="rmc.filter=0" ng-class="{active:rmc.filter==0}">All</a></li>
+                <li><a ng-click="rmc.filter=1" ng-class="{active:rmc.filter==1}">{{pr.userModel.FirstName}}'s Rooms</a></li>
+                <li><a ng-click="rmc.filter=2" ng-class="{active:rmc.filter==2}">Mutual</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 activities_in_wrapper">
+            <div class="col-xs-12 activities">
+
+                <div class="col-xs-3 p_rooms" ng-repeat="rm in rmc.data" ui-sref="Rooms.Opened.Messages({id:rm.Id})" ng-if="rmc.getRoomState(rm)">
+                    <div class="col-xs-12 p_rooms_wrapper">
+                        <div class="col-xs-12 p_rooms_image_wrapper">
+                            <img ng-src="{{rmc.getlogo(rm.Image)}}" class="p_rooms_image">
+                        </div>
+                        <div class="col-xs-12 p_rooms_text_wrapper">
+                            <h4>{{rm.Name}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+        </div>
+    </div>
+</div>

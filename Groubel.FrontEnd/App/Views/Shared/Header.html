@@ -1,0 +1,506 @@
+﻿<header id="main_header" ng-controller="notificationController as not" style="display:none">
+    <div class="w1024 header_container border_box">
+        <a ui-sref="Home" ui-sref-active="active" class="header_menu">what's new</a>
+        <a ui-sref="Rooms.New" ui-sref-active="active" class="header_menu ">talk</a>
+        <div id="header_tools">
+            <div id="search_group">
+                <input type="text" placeholder="search" class="border_box" ng-model="not.searchModel" ng-enter="not.goToUser()" ng-change="not.search()">
+                <div id="search_btn"></div>
+
+                <div class="search_result" style="display: block" ng-if="not.users.length>0 || not.rooms.length>0 ||  not.searcUser || not.searcRoom ">
+                    <div class="search_header">People</div>
+                    <div ng-if="not.searcUser" class="no_results">No res</div>
+                    <div class="user_with_image" ng-repeat="us in not.users" ng-class="{isfriend:us.IsFriend}">
+                        <div>
+                            <img ng-src="{{not.getlogo(us.Image)}}"/>
+                        </div>
+                        <a ui-sref="Profile.Posts.All({id:us.Id})">{{us.FirstName}} {{us.LastName}}</a>
+                        
+                        <friend  ng-if="us.IsFriend && us.Id!=user.userModel.Id">
+                            <div class="add_to_friend active"></div>
+                        </friend>
+                        <if_state ng-if="!us.IsFriend && us.Id!=user.userModel.Id">
+
+                            <div ng-if="us.RequestSent" class="add_to_friend sent"></div>
+                            <div class="add_to_friend sent" ng-if="us.RequestRecived"></div>
+
+                            <div class="add_to_friend" ng-if="!us.RequestRecived && !us.RequestSent" ></div>
+                        </if_state>
+
+                    </div>
+
+                    <div class="search_header">rooms</div>
+                    <div ng-if="not.searcRoom" class="no_results">no results found</div>
+                    <div class="user_with_image" ng-repeat="rm in not.rooms" ng-class="{private_room:rm.Visibility==true,public_room:rm.Visibility==false}">
+                        <div>
+                            <img ng-src="{{not.getlogo(rm.Image)}}" />
+                        </div>
+                        <a href="#/Rooms/Opened/Messages/{{rm.Id}}">{{rm.Name}}  </a>
+                        <i></i>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="notification" class="border_box">
+                <div id="not_main" >
+                    <div id="not_icon" ng-click="not.openNotifications()">
+                        <div>{{not.notificationCount.Item1}}</div>
+                    </div>
+                    <div id="last_not" >
+
+                        
+
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.PostAddedOnInterest" ui-sref="Posts({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            <tm ng-if="not.notificationCount.Item2.AliasId!='-2'">Posted Post On Your Interest</tm>
+                            
+                            <tm ng-if="not.notificationCount.Item2.AliasId=='-2'">Posted Nearby</tm>
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.SharedYourPost" ui-sref="Post({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Shared Post
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.LikedYourPost"  ui-sref="Post({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Liked Your Post
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.CmmentedOnYourPost"  ui-sref="Post({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Commnted On Your Post
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.CommentedInRoom"  ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Commented in Your Room
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.AddedYouInRoom"   ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Added You In Room
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.ChangedYouStatusInRoom"   ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Changed You Status In Room
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.RequestedAddToRoom"   ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Requested Add To Room "{{not.notificationCount.Item2.AliasName}}"
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.SendMessageInChat">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            send message in chat
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.AddEdYouAsFriend" ui-sref="Profile.Posts.All({id:not.notificationCount.Item2.SenderUserId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Added You As Friend
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.RequestedAddFriend" ui-sref="Profile.Posts.All({id:not.notificationCount.Item2.SenderUserId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            Requested Add As Friend
+                        </span>
+
+                    </div>
+                </div>
+                <div id="not_list" class="border_box" ng-if="not.opened">
+                    <div>
+                        <div class="border_box not_item" ng-repeat="nt in not.notifications"> 
+
+                        <div class="us_img border_box">
+                            <img ng-src="{{not.getlogo(nt.SenderUser.Image)}}" />
+                        </div>
+                            
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.PostAddedOnInterest" ui-sref="Posts({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}&nbsp;
+                                </a> &nbsp;
+                                <tm ng-if="nt.AliasId!='-2'">Posted Post On Your Interest</tm>
+                                <tm ng-if="nt.AliasId=='-2'">
+                                    Posted Nearby
+                                </tm>
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.SharedYourPost" ui-sref="Post({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Shared Your Post
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.LikedYourPost" ui-sref="Post({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Liked Your Post
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.CmmentedOnYourPost" ui-sref="Post({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Commnted On Your Post
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.CommentedInRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                  Commented in Your Room "{{nt.AliasName}}"
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.AddedYouInRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Added You In Room "{{nt.AliasName}}"
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.ChangedYouStatusInRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Changed You Status In Room "{{nt.AliasName}}"
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.RequestedAddToRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})" class="recuesr_rm">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Requested Add To Room "{{nt.AliasName}}"
+                                <i ng-if="!nt.ApproovedStatus">
+                                    <i ng-click="not.submitUser(nt)">yes</i>
+                                    <i ng-click="not.notSubmitUser(nt)">no</i>
+                                </i>
+                                <i ng-if="nt.ApproovedStatus">
+                                    <i>Seen</i>
+                                </i>
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.RequestedAddFriend" ui-sref="Profile.Posts.All({id:nt.AliasId})" class="recuesr_rm">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Requested Add As Friend
+                                <i ng-if="!nt.ApproovedStatus">
+                                    <i ng-click="not.addFriend(nt)">yes</i>
+                                    <i ng-click="not.notSubmitUser(nt)">no</i>
+                                </i>
+                                <i ng-if="nt.ApproovedStatus">
+                                    <i>Seen</i>
+                                </i>
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.SendMessageInChat" >
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </a> &nbsp;
+                                Send Message In Chat
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.AddEdYouAsFriend" ui-sref="Profile.Posts.All({id:nt.SenderUserId})">
+                                <a title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}} 
+                                </a> 
+                                &nbsp;   Added You As Friend
+                            </span>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="user_account">
+                <img ng-src="{{not.getlogo(user.userModel.Image)}}"/>
+                <a  class="text_wrap">{{user.userModel.FirstName}}</a>
+                <div id="user_drop">
+                    <a ui-sref="Profile.Posts.All({id:user.userModel.Id})">profile</a>
+                    <a ui-sref="Profile.Personal({id:user.userModel.Id})">settings</a>
+                    <a ui-sref="Profile.Friends({id:user.userModel.Id})">friends</a>
+                    <a href="/Account/LogOff">log out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="not">
+    test notificaton
+</div>
+
+<div class="col-xs-12" id="header" ng-controller="notificationController as not">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a ui-sref="Home" ui-sref-active="active" class="navbar-brand"><i class="fa fa-check-circle" aria-hidden="true"></i> What's new</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref="Rooms.New" ui-sref-active="active" id="talk" >Talk</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group" id="search_group">
+                        <input type="text" class="form-control" placeholder="Search..." id="search_input"  ng-model="not.searchModel" ng-enter="not.goToUser()" ng-change="not.search()">
+                        <button type="submit" class="btn btn-default" id="search_btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <div class="search_open_wrapper"  style="display: block" ng-if="not.users.length>0 || not.rooms.length>0 ||  not.searcUser || not.searcRoom ">
+                        <div class="col-xs-12" id="search_open_in_wrapper">
+                            <div class="col-xs-12" id="search_open_header">
+                                People
+                            </div>
+                            <div class="col-xs-12" id="search_open_users_wrapper">
+
+                                <div class="col-md-12" ng-if="not.searcUser"  id="search_open_users_list">no results found</div>
+
+                                    <div class="col-md-12" id="search_open_users_list" ui-sref="Profile.Posts.All({id:us.Id})" ng-repeat="us in not.users" ng-class="{isfriend:us.IsFriend}">
+                                        <div id="search_user_image_wrapper">
+                                            <img ng-src="{{not.getlogo(us.Image)}}" id="search_user_image">
+                                        </div>
+                                        <div id="search_user_link_wrapper">
+                                            <a ui-sref="Profile.Posts.All({id:us.Id})">{{us.FirstName}} {{us.LastName}}</a>
+                                        </div>
+
+                                        <!--<friend ng-if="us.IsFriend && us.Id!=user.userModel.Id">
+                                            <div class="add_to_friend active"></div>
+                                        </friend>
+                                        <if_state ng-if="!us.IsFriend && us.Id!=user.userModel.Id">
+
+                                            <div ng-if="us.RequestSent" class="add_to_friend sent"></div>
+                                            <div class="add_to_friend sent" ng-if="us.RequestRecived"></div>
+
+                                            <div class="add_to_friend" ng-if="!us.RequestRecived && !us.RequestSent"></div>
+                                        </if_state>-->
+
+                                    </div>
+
+                              </div>
+                            <div class="col-xs-12" id="search_open_header">
+                                Rooms
+                            </div>
+                            <div class="col-xs-12" id="search_open_users_wrapper">
+
+                                <div ng-if="not.searcRoom" class="col-md-12" id="search_open_users_list">no results found</div>
+
+                                <div class="col-md-12" id="search_open_users_list"  ng-repeat="rm in not.rooms" ng-class="{private_room:rm.Visibility==true,public_room:rm.Visibility==false}">
+                                    <div id="search_user_image_wrapper">
+                                        <img  ng-src="{{not.getlogo(rm.Image)}}"  id="search_user_image">
+                                    </div>
+                                    <div id="search_user_link_wrapper">
+                                        <a href="#/Rooms/Opened/Messages/{{rm.Id}}">{{rm.Name}}  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle"  ng-click="not.openNotifications()" id="notification_a">
+                            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            <div id="not_counter">{{not.notificationCount.Item1}}</div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media" ng-if="not.opened" style="display:block" id="dropdown_notifications">
+                            <li class="dropdown-menu-header" role="presentation" id="drop_header">
+                                <h4>Notifications</h4>
+                                <span class="label label-round label-info">New {{not.notificationCount.Item1}}</span>
+                            </li>
+                            <li ng-repeat="nt in not.notifications">
+                               <a>
+                                  <i id="dropdown_icon"><img ng-src="{{not.getlogo(nt.SenderUser.Image)}}" style="width"/></i>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.PostAddedOnInterest" ui-sref="Posts({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}&nbsp;
+                                </span> &nbsp;
+                                <tm ng-if="nt.AliasId!='-2'">Posted Post On Your Interest</tm>
+                                <tm ng-if="nt.AliasId=='-2'">
+                                    Posted Nearby
+                                </tm>
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.SharedYourPost" ui-sref="Post({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Shared Your Post
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.LikedYourPost" ui-sref="Post({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Liked Your Post
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.CmmentedOnYourPost" ui-sref="Post({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Commnted On Your Post
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.CommentedInRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                  Commented in Your Room "{{nt.AliasName}}"
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.AddedYouInRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Added You In Room "{{nt.AliasName}}"
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.ChangedYouStatusInRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Changed You Status In Room "{{nt.AliasName}}"
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.RequestedAddToRoom" ui-sref="Rooms.Opened.Messages({id:nt.AliasId})" class="recuesr_rm">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Requested Add To Room "{{nt.AliasName}}"
+                                <i ng-if="!nt.ApproovedStatus">
+                                    <i ng-click="not.submitUser(nt)" class="btn btn-success">yes</i>
+                                    <i ng-click="not.notSubmitUser(nt)" class="btn btn-danger">no</i>
+                                </i>
+                                <i ng-if="nt.ApproovedStatus">
+                                    <i class="btn btn-info">Seen</i>
+                                </i>
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.RequestedAddFriend" ui-sref="Profile.Posts.All({id:nt.SenderUserId})" class="recuesr_rm">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Requested Add As Friend
+                                <i ng-if="!nt.ApproovedStatus">
+                                    <i ng-click="not.addFriend(nt)" class="btn btn-success">yes</i>
+                                    <i ng-click="not.notSubmitUser(nt)" class="btn btn-danger">no</i>
+                                </i>
+                                <i ng-if="nt.ApproovedStatus">
+                                    <i class="btn btn-info">Seen</i>
+                                </i>
+                            </span>
+
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.SendMessageInChat" >
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}
+                                </span> &nbsp;
+                                Send Message In Chat
+                            </span>
+                            <span ng-if="nt.Type==not.NotificationTypeEnum.AddEdYouAsFriend" ui-sref="Profile.Posts.All({id:nt.SenderUserId})">
+                                <span title="{{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}}" class="notification_username">
+                                    {{nt.SenderUser.FirstName}} {{nt.SenderUser.LastName}} 
+                                </span> 
+                                &nbsp;   Added You As Friend
+                            </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                 </a>
+                            
+                            </li>
+
+                         </ul>
+                    </li>
+                    <li class="not_last_item">
+                    
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.PostAddedOnInterest" ui-sref="Posts({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            <tm ng-if="not.notificationCount.Item2.AliasId!='-2'"> - Posted Post On Your Interest</tm>
+
+                            <tm ng-if="not.notificationCount.Item2.AliasId=='-2'"> - Posted Nearby</tm>
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.SharedYourPost" ui-sref="Post({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Shared Post
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.LikedYourPost" ui-sref="Post({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Liked Your Post
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.CmmentedOnYourPost" ui-sref="Post({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Commnted On Your Post
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.CommentedInRoom" ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Commented in Your Room
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.AddedYouInRoom" ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Added You In Room
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.ChangedYouStatusInRoom" ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Changed You Status In Room
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.RequestedAddToRoom" ui-sref="Rooms.Opened.Messages({id:not.notificationCount.Item2.AliasId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Requested Add To Room "{{not.notificationCount.Item2.AliasName}}"
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.SendMessageInChat">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - send message in chat
+                        </span>
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.AddEdYouAsFriend" ui-sref="Profile.Posts.All({id:not.notificationCount.Item2.SenderUserId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Added You As Friend
+                        </span>
+
+                        <span ng-if="not.notificationCount.Item2.Type==not.NotificationTypeEnum.RequestedAddFriend" ui-sref="Profile.Posts.All({id:not.notificationCount.Item2.SenderUserId})">
+                            <a href="" title="{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}">{{not.notificationCount.Item2.SenderUser.FirstName}} {{not.notificationCount.Item2.SenderUser.LastName}}</a>
+                            - Requested Add As Friend
+                        </span>
+
+
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user" id="dropdown_icon"></i> <div class="profile_name">{{user.userModel.FirstName}}</div> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" id="dropdown_user">
+                            <li><a ui-sref="Profile.Posts.All({id:user.userModel.Id})"><i class="fa fa-briefcase" id="dropdown_icon"></i> Profile</a></li>
+                            <li><a  ui-sref="Profile.Personal({id:user.userModel.Id})"><i class="fa fa-cog" aria-hidden="true" id="dropdown_icon"></i> Settings</a></li>
+                            <li><a ui-sref="Profile.Friends({id:user.userModel.Id})"><i class="fa fa-users" aria-hidden="true" id="dropdown_icon"></i> Friends <span class="label label-info pull-right mail-info" id="label_friends">{{user.userModel.FriendsCount}}</span></a></li>
+                            <li id="last_li"><a href="/Account/LogOff"><i class="fa fa-power-off" aria-hidden="true" id="dropdown_icon"></i> Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+</div>

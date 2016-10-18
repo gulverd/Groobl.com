@@ -1,0 +1,327 @@
+﻿@model Groubel.FrontEnd.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+
+}
+
+<div class="col-xs-12" id="middle" ng-app="reg" ng-controller="registerController as rg" >
+
+    <div class="container" id="middle_container_login">
+        <div class="row">
+            <div class="col-xs-12 login_title">
+                <h2>Welcome to <i class="fa fa-check-circle" aria-hidden="true"></i> groobl</h2>
+            </div>
+            <div class="col-xs-12 login_title">
+                <h3>@ViewBag.count Students interested nearby</h3>
+            </div>
+
+                <div class="col-xs-12 login_inputs_wrp" ng-if="rg.state==1">
+                    <div class="form-group">
+                        <input type="email" class="form-control email" placeholder="E-mail" ng-model="rg.user.Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control firstname" placeholder="First Name" ng-model="rg.user.FirstName">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control lastname" placeholder="Last Name" ng-model="rg.user.LastName">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass" placeholder="Password" ng-model="rg.user.Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass2" placeholder="Confirm Password" ng-model="rg.user.ConfirmPassword">
+                    </div>
+                    <div class="form-group">
+                        <label class="reg_lab">Choose Your Gender</label>
+                        <select class="form-control" ng-model="rg.user.Gender">
+                            <option ng-selected="rg.user.Gender==1" value="1">Male</option>
+                            <option ng-selected="rg.user.Gender==2" value="2">Female</option>
+                            <option ng-selected="rg.user.Gender==3" value="3">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="reg_lab">Date of Birth</label>
+                        <input type="date" class="form-control birth" ng-model="rg.user.DateOfBirth">
+                    </div>
+                </div>
+                <div class="col-xs-12 login_inputs_wrp" ng-if="rg.state==2">
+                    <div class="form-group">
+                        <label class="reg_lab">Tap To Choose Your Interests</label>
+                        <div class="col-xs-12 ch_int_wrp">
+                            <button class="btn ch_int_bt" style="margin-bottom:3px"
+                                    ng-repeat="int in rg.interests" 
+                                    ng-click="rg.addToMyInterests(int.Id)" 
+                                    ng-class="{'btn-primary':rg.getInterestClass(int.Id),'btn-default':!rg.getInterestClass(int.Id)}"
+                                    >#{{int.Name}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 login_buts_wrp">
+                    <button class="btn btn-warning join_bt" ng-click="rg.register()">Join</button>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="~/Scripts/angular.js"></script>
+<script>
+
+    angular.module('reg', []).
+        controller('registerController', function ($scope, $http) {
+
+            var mv = this;
+
+            mv.state = 1;
+
+            mv.register = function () {
+
+                if (mv.state == 2) {
+
+                    send()
+
+                    return;
+                }
+
+                if (mv.user.Email.length == 0) {
+                    $(".email").addClass("red");
+                    return;
+                }
+
+                checkEmail(function (d) {
+
+                    if (d) {
+
+                        $(".email").addClass("red");
+
+                    } else {
+
+                        if (mv.user.FirstName.length == 0)
+                            $(".firstname").addClass("red");
+                        else {
+                            if (mv.user.LastName.length == 0)
+                                $(".lastname").addClass("red");
+                            else {
+                              
+                                if (mv.user.Password.length == 0) {
+
+                                    $(".pass").addClass("red");
+
+                                } else {
+
+                                    if (mv.user.ConfirmPassword.length == 0) {
+
+                                        $(".pass2").addClass("red");
+
+                                    } else {
+
+                                        if (mv.user.Password.length != mv.user.ConfirmPassword.length) {
+
+                                            $(".pass2").addClass("red");
+
+                                        } {
+
+                                            mv.state = 2
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+                        }
+
+                    }
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+            }
+
+
+
+
+            mv.tabs = 1;
+            mv.stepTab = function (st) {
+                //  mv.tabs = st;
+            }
+
+            mv.interests = [];
+            mv.selectedInterests = [];
+
+            mv.interestTab = 1;
+            mv.setInterestTab = function (index) {
+                mv.interestTab = index;
+            }
+
+            mv.addToMyInterests = function (id) {
+
+                if (mv.selectedInterests.indexOf(id) == -1)
+                    mv.selectedInterests.push(id)
+                else
+                    mv.selectedInterests.splice(mv.selectedInterests.indexOf(id), 1);
+            }
+            mv.getInterestClass = function (id) {
+                return mv.selectedInterests.indexOf(id) != -1;
+            }
+
+            mv.moreInterests = function () {
+                $http.get("/Interests/GetRandomInterests").then(function (d) {
+
+                    mv.interests = d.data;
+                    console.log(d);
+                });
+            }
+
+
+            $http.get("/Interests/GetRandomInterests").then(function (d) {
+
+                mv.interests = d.data;
+                console.log(d);
+            });
+
+            mv.user = {
+                Email: "",
+                FirstName: "",
+                LastName: "",
+                Password: "",
+                ConfirmPassword: "",
+                Gender: 1,
+                DateOfBirth: "",
+                Interests: []
+            }
+            //
+            var checkEmail = function (callbeck) {
+
+                $http.get("/Account/CheckEmail?email=" + mv.user.Email).then(function (d) {
+
+                    d = d.data
+                    callbeck(d);
+                });
+            }
+
+            mv.openTab = function (t) {
+
+                if (mv.maxStep >= t)
+                    mv.tabs = t;
+
+            }
+
+            mv.maxStep = 1;
+
+            mv.next = function () {
+
+                if (mv.tabs == 1) {
+
+                    if (mv.user.Email.length == 0) {
+                        $(".reg_group.email").addClass("red");
+                        return;
+                    }
+
+                    checkEmail(function (d) {
+
+                        if (d) {
+
+                            $(".reg_group.email").addClass("red");
+
+                        } else {
+
+                            if (mv.user.FirstName.length == 0)
+                                $(".reg_group.name").addClass("red");
+                            else {
+                                if (mv.user.LastName.length == 0)
+                                    $(".reg_group.lastname").addClass("red");
+                                else {
+                                    mv.tabs = 2;
+                                    mv.maxStep = Math.max(mv.maxStep, mv.tabs);
+                                }
+                            }
+
+                        }
+
+                    });
+
+                } else if (mv.tabs == 2) {
+
+                    if (mv.user.Password.length == 0)
+                        $(".reg_group.password").addClass("red");
+                    else {
+                        if (mv.user.ConfirmPassword.length == 0 || mv.user.ConfirmPassword != mv.user.Password)
+                            $(".reg_group.confirm").addClass("red");
+                        else {
+                            mv.tabs = 3;
+                            mv.maxStep = Math.max(mv.maxStep, mv.tabs);
+                        }
+                    }
+
+                } else if (mv.tabs == 3) {
+                    mv.tabs = 4;
+                    mv.maxStep = Math.max(mv.maxStep, mv.tabs);
+
+                } else if (mv.tabs == 4) {
+
+                    if (mv.user.DateOfBirth.length == 0)
+                        $(".reg_group.date").addClass("red");
+                    else {
+                        mv.tabs = 5;
+                        mv.maxStep = Math.max(mv.maxStep, mv.tabs);
+                    }
+
+                } else if (mv.tabs == 5) {
+                    send();
+                }
+
+                //send();
+            }
+
+            var send = function () {
+
+                var data = mv.user;
+                data.InterestIds = mv.selectedInterests;
+
+                $http.post("/Account/Register", data).then(function (d) {
+
+                    if (d.data) {
+
+                            location.href = "/";
+
+                    } else {
+
+                    }
+
+                });
+
+            }
+
+            setTimeout(function () { $(".form-control").change(function () { $(this).removeClass("red"); })  }, 2000);
+        });
+
+    
+</script>

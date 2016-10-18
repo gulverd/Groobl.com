@@ -1,0 +1,24 @@
+﻿
+<div class="col-xs-12" id="boxes_wrapper" ng-controller="photosController as ph">
+    <div class="col-xs-12 activities_all_wrapper">
+
+        <div class="col-xs-12 activities_title_wrapper">
+            <div ng-click="ph.filter=0" ng-class="{active:ph.filter==0}">all</div>
+            <div ng-click="ph.filter=1" ng-class="{active:ph.filter==1}">posts</div>
+            <div ng-click="ph.filter=2" ng-class="{active:ph.filter==2}">comment</div>
+            <div ng-click="ph.filter=3" ng-class="{active:ph.filter==3}">room</div>
+        </div>
+        <div class="col-xs-12 activities_in_wrapper">
+            <div class="col-xs-12 activities">
+                <div class="col-xs-12 activities_list_header_wrapper">
+
+                    <a href="{{ph.getlogo(photo.Name)}}" data-lightbox="roadtrip" class="user_image_item" ng-repeat="photo in ph.photos" ng-if="ph.filter==0 || ph.filter==photo.Type">
+                        <img ng-src="{{ph.getlogo(photo.Name)}}" style="width:18%;float:left;margin-right:10px">
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

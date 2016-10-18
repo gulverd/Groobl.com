@@ -1,0 +1,65 @@
+﻿<div class="col-xs-12" id="boxes_wrapper" ng-controller="userActivityController as ac">
+    <div class="col-xs-12 activities_all_wrapper">
+        <div class="col-xs-12 activities_title_wrapper">
+            <h4>User Activity Log</h4>
+        </div>
+        <div class="col-xs-12 activities_in_wrapper">
+
+            <div class="col-xs-12 activities" ng-repeat="(key,value) in ac.data">
+                <div class="col-xs-12 activities_list_header_wrapper">
+                    <div class="col-xs-12 activities_date_wrapper">
+                        <h4>{{key}}</h4>
+                    </div>
+                    <div class="col-xs-12 activities_lists_wrapper">
+
+                        <div class="col-xs-12 activities_list_wrapper" ng-repeat="nt in value" ng-if="nt.Type!=ac.NotificationTypeEnum.SendMessageInChat">
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.PostAddedOnInterest">
+                                Posted  Post On <a ui-sref="Posts({id:nt.AliasId})">Interest <span ng-if="nt.AliasName.length>0">#{{nt.AliasName}}</span></a>
+                            </span>
+
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.SharedYourPost">
+                                Shared <a ui-sref="Post({id:nt.AliasId})">Post</a>
+                            </span>
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.LikedYourPost">
+                                Liked a <a ui-sref="Post({id:nt.AliasId})">Post</a>
+                            </span>
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.CmmentedOnYourPost">
+                                Commnted On <a ui-sref="Post({id:nt.AliasId})">Post</a>
+                            </span>
+
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.CommentedInRoom">
+                                Commented in Room "{{nt.AliasName}}"
+                            </span>
+
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.AddedYouInRoom">
+                                Added You In Room <a ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">{{nt.AliasName}}</a>
+                            </span>
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.ChangedYouStatusInRoom">
+                                Changed User Status In Room <a ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">{{nt.AliasName}}</a>
+                            </span>
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.RequestedAddToRoom">
+                                Requested Add To Room <a ui-sref="Rooms.Opened.Messages({id:nt.AliasId})">{{nt.AliasName}}</a>
+                            </span>
+
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.SendMessageInChat">
+                                Send Message In Chat
+                            </span>
+
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.AddEdYouAsFriend" ui-sref="Profile.Posts.All({id:nt.SenderUserId})">
+                                Added Friend <a ui-sref="Profile.Posts.All({id:nt.ReciverUserId})">{{nt.ReciverUser.FirstName}} {{nt.ReciverUser.LastName}}</a>
+                            </span>
+
+                            <span ng-if="nt.Type==ac.NotificationTypeEnum.RequestedAddFriend">
+                                Requested Add Friend  <a ui-sref="Profile.Posts.All({id:nt.ReciverUserId})">{{nt.ReciverUser.FirstName}} {{nt.ReciverUser.LastName}}</a>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

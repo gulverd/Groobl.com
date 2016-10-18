@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Home - Groubel</title>
+
+    <script>
+        var _userId=@((int)ViewBag.UserId);
+    </script>
+
+    @*<link rel="stylesheet" href="~/Content/css/style.css">*@
+   
+
+    <link href="~/Content/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style2.css">
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.easing.1.3.js"></script>
+    <script src="https://html5box.com/html5lightbox/html5lightbox/html5lightbox.js"></script>
+    <script src="~/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-sanitize.js"></script>
+    <script src="~/Scripts/angular-ui-router.js"></script>
+    <script src="~/Scripts/underscore.min.js"></script>
+    <script src="~/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/smart-area.min.js"></script>
+
+    
+
+    <script src="~/App/app.js"></script>
+
+
+    <script src="~/App/Controllers/userController.js"></script>
+    <script src="~/App/Services/userService.js"></script>
+
+    <script src="~/App/Controllers/postsController.js"></script>
+    <script src="~/App/Services/postsService.js"></script>
+
+    <script src="~/App/Services/interestsService.js"></script>
+
+    <script src="~/App/Controllers/profileController.js"></script>
+
+    <script src="~/App/Controllers/friendsController.js"></script>
+    <script src="~/App/Services/friendsService.js"></script>
+
+    <script src="~/App/Controllers/roomsController.js"></script>
+    <script src="~/App/Controllers/openedRoomController.js"></script>
+    <script src="~/App/Services/roomsService.js"></script>
+
+    <script src="~/App/Controllers/notificationController.js"></script>
+    <script src="~/App/Services/notificationService.js"></script>
+    <script src="~/App/Controllers/suggestionsController.js"></script>
+    <script src="~/App/Services/suggestionsService.js"></script>
+
+    <script src="~/App/Controllers/chatController.js"></script>
+
+    <!--Directives Start-->
+    <script src="~/App/Directives/DragImageUploaderDirective.js"></script>
+    <script src="~/App/Directives/UserTitleDirective.js"></script>
+    <!--Directives End-->
+
+</head>
+<body ng-controller="userController as user">
+
+    <div class="header_fixer"></div>
+    <ng-include src="'/App/Views/Shared/Header.html'" style="height: 72px;display: block;"></ng-include>
+    
+
+
+    <div class="col-xs-12">
+        <div class="container" id="middle_container">
+            <div class="col-xs-6" ui-view style="position:initial"></div>
+            <ng-include src="'/App/Views/Shared/RightSideBarPartialView.html'" class="col-xs-6" style="padding:0"></ng-include>
+            <div class="clearer"></div>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+        @RenderBody()
+       
+
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+
+
+    function textAreaAdjust(o) {
+        o.style.height = "1px";
+        o.style.height = (-20+o.scrollHeight)+"px";
+    }
+
+
+    sampleTags=[];
+
+ 
+
+    </script>
+
+</body>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+</html>

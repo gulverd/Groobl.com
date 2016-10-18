@@ -1,0 +1,105 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7AEB66EA-B2AA-42B3-9256-9AF887051025}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F2F5F24E-5164-4C2B-A715-54951BBFB6FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.FrontEnd", "Groubel.FrontEnd\Groubel.FrontEnd.csproj", "{86BC9DAB-6D16-4DC3-AE02-F43044CE2867}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.BLL", "GroubelNew.BLL\Groubel.BLL.csproj", "{B81F587D-4B2E-49B6-B99D-29F58E04AE37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.Domain", "GroubelNew.Domain\Groubel.Domain.csproj", "{8DA685F3-3C38-4B71-95EE-3DAF32E36B08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.Common", "GroubelNew.Common\Groubel.Common.csproj", "{12A6768C-3794-4857-B65C-8F43AF6496BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.Data", "Groubel.Data\Groubel.Data.csproj", "{E7A46448-19C7-4C51-B973-7BCAE01D1422}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.Helpers", "Groubel.Helpers\Groubel.Helpers.csproj", "{EC6B41B4-95A5-4B47-925B-5F946CBC103F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groubel.Enums", "Groubel.Enums\Groubel.Enums.csproj", "{2438D6F5-0CF5-4351-9461-1A1A68502DF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86BC9DAB-6D16-4DC3-AE02-F43044CE2867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BC9DAB-6D16-4DC3-AE02-F43044CE2867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BC9DAB-6D16-4DC3-AE02-F43044CE2867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BC9DAB-6D16-4DC3-AE02-F43044CE2867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B81F587D-4B2E-49B6-B99D-29F58E04AE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B81F587D-4B2E-49B6-B99D-29F58E04AE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B81F587D-4B2E-49B6-B99D-29F58E04AE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B81F587D-4B2E-49B6-B99D-29F58E04AE37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA685F3-3C38-4B71-95EE-3DAF32E36B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA685F3-3C38-4B71-95EE-3DAF32E36B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA685F3-3C38-4B71-95EE-3DAF32E36B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA685F3-3C38-4B71-95EE-3DAF32E36B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A6768C-3794-4857-B65C-8F43AF6496BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A6768C-3794-4857-B65C-8F43AF6496BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A6768C-3794-4857-B65C-8F43AF6496BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A6768C-3794-4857-B65C-8F43AF6496BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A46448-19C7-4C51-B973-7BCAE01D1422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A46448-19C7-4C51-B973-7BCAE01D1422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A46448-19C7-4C51-B973-7BCAE01D1422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A46448-19C7-4C51-B973-7BCAE01D1422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC6B41B4-95A5-4B47-925B-5F946CBC103F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC6B41B4-95A5-4B47-925B-5F946CBC103F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC6B41B4-95A5-4B47-925B-5F946CBC103F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC6B41B4-95A5-4B47-925B-5F946CBC103F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2438D6F5-0CF5-4351-9461-1A1A68502DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2438D6F5-0CF5-4351-9461-1A1A68502DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2438D6F5-0CF5-4351-9461-1A1A68502DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2438D6F5-0CF5-4351-9461-1A1A68502DF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86BC9DAB-6D16-4DC3-AE02-F43044CE2867} = {F2F5F24E-5164-4C2B-A715-54951BBFB6FA}
+		{B81F587D-4B2E-49B6-B99D-29F58E04AE37} = {7AEB66EA-B2AA-42B3-9256-9AF887051025}
+		{8DA685F3-3C38-4B71-95EE-3DAF32E36B08} = {7AEB66EA-B2AA-42B3-9256-9AF887051025}
+		{12A6768C-3794-4857-B65C-8F43AF6496BE} = {7AEB66EA-B2AA-42B3-9256-9AF887051025}
+		{E7A46448-19C7-4C51-B973-7BCAE01D1422} = {7AEB66EA-B2AA-42B3-9256-9AF887051025}
+		{EC6B41B4-95A5-4B47-925B-5F946CBC103F} = {7AEB66EA-B2AA-42B3-9256-9AF887051025}
+		{2438D6F5-0CF5-4351-9461-1A1A68502DF6} = {7AEB66EA-B2AA-42B3-9256-9AF887051025}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://vakho.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Groubel.Data\\Groubel.Data.csproj
+		SccProjectTopLevelParentUniqueName1 = GroubelNew.sln
+		SccProjectName1 = Groubel.Data
+		SccLocalPath1 = Groubel.Data
+		SccProjectUniqueName2 = Groubel.Enums\\Groubel.Enums.csproj
+		SccProjectTopLevelParentUniqueName2 = GroubelNew.sln
+		SccProjectName2 = Groubel.Enums
+		SccLocalPath2 = Groubel.Enums
+		SccProjectUniqueName3 = Groubel.FrontEnd\\Groubel.FrontEnd.csproj
+		SccProjectTopLevelParentUniqueName3 = GroubelNew.sln
+		SccProjectName3 = Groubel.FrontEnd
+		SccLocalPath3 = Groubel.FrontEnd
+		SccProjectUniqueName4 = Groubel.Helpers\\Groubel.Helpers.csproj
+		SccProjectTopLevelParentUniqueName4 = GroubelNew.sln
+		SccProjectName4 = Groubel.Helpers
+		SccLocalPath4 = Groubel.Helpers
+		SccProjectUniqueName5 = GroubelNew.BLL\\Groubel.BLL.csproj
+		SccProjectTopLevelParentUniqueName5 = GroubelNew.sln
+		SccProjectName5 = GroubelNew.BLL
+		SccLocalPath5 = GroubelNew.BLL
+		SccProjectUniqueName6 = GroubelNew.Common\\Groubel.Common.csproj
+		SccProjectTopLevelParentUniqueName6 = GroubelNew.sln
+		SccProjectName6 = GroubelNew.Common
+		SccLocalPath6 = GroubelNew.Common
+		SccProjectUniqueName7 = GroubelNew.Domain\\Groubel.Domain.csproj
+		SccProjectTopLevelParentUniqueName7 = GroubelNew.sln
+		SccProjectName7 = GroubelNew.Domain
+		SccLocalPath7 = GroubelNew.Domain
+	EndGlobalSection
+EndGlobal
